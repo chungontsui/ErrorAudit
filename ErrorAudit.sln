@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorAudit", "ErrorAudit\Er
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorAudit.Tests", "ErrorAudit.Tests\ErrorAudit.Tests.csproj", "{53875BF4-7716-4AF2-AD7E-85BBBC47797B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorAudit.Repo", "ErrorAudit.Repo\ErrorAudit.Repo.csproj", "{89921779-F0AC-4A08-BEFA-BB1C331C27E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErrorAudit.DataAccess", "ErrorAudit.DataAccess\ErrorAudit.DataAccess.csproj", "{5FD69F4E-82E1-40D1-9EE4-2AAF61D959FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{53875BF4-7716-4AF2-AD7E-85BBBC47797B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53875BF4-7716-4AF2-AD7E-85BBBC47797B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53875BF4-7716-4AF2-AD7E-85BBBC47797B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89921779-F0AC-4A08-BEFA-BB1C331C27E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89921779-F0AC-4A08-BEFA-BB1C331C27E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89921779-F0AC-4A08-BEFA-BB1C331C27E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89921779-F0AC-4A08-BEFA-BB1C331C27E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FD69F4E-82E1-40D1-9EE4-2AAF61D959FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FD69F4E-82E1-40D1-9EE4-2AAF61D959FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FD69F4E-82E1-40D1-9EE4-2AAF61D959FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FD69F4E-82E1-40D1-9EE4-2AAF61D959FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
