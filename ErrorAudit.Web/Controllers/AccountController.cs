@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ErrorAudit.Web.Models;
+using ErrorAudit.DataAccess;
 
 namespace ErrorAudit.Web.Controllers
 {
@@ -17,7 +18,7 @@ namespace ErrorAudit.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+		private ConfigDataAccess _configDA;
         public AccountController()
         {
         }
@@ -26,6 +27,7 @@ namespace ErrorAudit.Web.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
+			_configDA = new ConfigDataAccess();
         }
 
         public ApplicationSignInManager SignInManager
@@ -156,12 +158,13 @@ namespace ErrorAudit.Web.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+					// For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+					// Send an email with this link
+					// string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+					// var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+					// await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+					_configDA.AddOrganization(new Organization() { OrganizationName = model.Organization });
 
                     return RedirectToAction("Index", "Home");
                 }
