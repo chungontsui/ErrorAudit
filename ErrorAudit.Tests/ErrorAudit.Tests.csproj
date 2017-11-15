@@ -109,8 +109,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
-    <Compile Include="Controllers\ValuesControllerTest.cs" />
     <Compile Include="test.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -123,10 +121,6 @@
     <ProjectReference Include="..\ErrorAudit.DataAccess\ErrorAudit.DataAccess.csproj">
       <Project>{5fd69f4e-82e1-40d1-9ee4-2aaf61d959fa}</Project>
       <Name>ErrorAudit.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ErrorAudit\ErrorAudit.csproj">
-      <Project>{5BC271F1-E089-49F1-A66C-A1E6E9EC8A3F}</Project>
-      <Name>ErrorAudit</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
