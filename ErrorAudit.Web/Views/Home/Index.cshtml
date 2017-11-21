@@ -7,9 +7,197 @@
 		<span class="glyphicon glyphicon-arrow-left navArrow"></span>
 	</div>
 	<div class="col-md-8">
+		@*<ul class="nav nav-tabs" style="margin-top:10px">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="#">Menu 1</a></li>
+				<li><a href="#">Menu 2</a></li>
+				<li><a href="#">Menu 3</a></li>
+			</ul>*@
 
+		<div style="margin-top:10%" class="section" id="ErrorTypeChooser">
+			<button type="button" class="btn btn-primary btn-lg btn-block" style="height:100px" onclick="ShowSectionHideOthers('EntryErrors')">Entry</button>
+			<button type="button" class="btn btn-secondary btn-lg btn-block" style="height:100px" onclick="ShowSectionHideOthers('DispensingErrors')">Dispensing</button>
+		</div>
+
+		<div class="container section" id="EntryErrors" style="margin-top:20pt; display:none">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Entry Errors</h3>
+				</div>
+				<div class="panel-body">
+					<div class="col-md-6">
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Directions</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">History not checked</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Dose innappropriate</button>
+					</div>
+					<div class="col-md-6">
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Brand Choosen</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Quantity/Period Of Supply</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorreect Calculations</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="container section" id="DispensingErrors" style="margin-top:20pt; display:none">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Dispensing Errors</h3>
+				</div>
+				<div class="panel-body">
+					<div class="col-md-6">
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Medicine</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Strength</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Quantity</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Correct Product Form</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Brand</button>
+					</div>
+					<div class="col-md-6">
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Interactions Identified</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Dose Inappropriate</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Drug Omission</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Interactions Identified</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Patient Supplied</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Miscellaneous</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="container section" id="ProcessingStaff" style="margin-top:20pt; display:none">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-danger">
+						<div class="panel-heading">
+							<h1 class="panel-title">Processing Staff</h1>
+						</div>
+						<div class="panel-body">
+							<form>
+								<div class="form-group">
+									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Enter:</label>
+									<select class="form-control form-control-lg" id="exampleFormControlSelect1" style="font-size: 3.25rem; height:50px">
+										<option>Raf</option>
+										<option>Jeff</option>
+										<option>Fiona</option>
+										<option>Warren</option>
+										<option>Leanne</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Dispensing:</label>
+									<select class="form-control form-control-lg" id="exampleFormControlSelect1" style="font-size: 3.25rem; height:50px">
+										<option>Raf</option>
+										<option>Jeff</option>
+										<option>Fiona</option>
+										<option>Warren</option>
+										<option>Leanne</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Check:</label>
+									<select class="form-control form-control-lg" id="exampleFormControlSelect1" style="font-size: 3.25rem; height:50px" onchange="ShowSectionHideOthers('NoticedStaff')">
+										<option>Raf</option>
+										<option>Jeff</option>
+										<option>Fiona</option>
+										<option>Warren</option>
+										<option>Leanne</option>
+									</select>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="container section" id="NoticedStaff" style="margin-top:20pt; display:none">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-warning">
+						<div class="panel-heading">
+							<h3 class="panel-title">Noticed Staff</h3>
+						</div>
+						<div class="panel-body">
+							<form>
+								<div class="form-group">
+									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Enter:</label>
+									<select class="form-control form-control-lg" id="exampleFormControlSelect1" style="font-size: 3.25rem; height:50px">
+										<option>Raf</option>
+										<option>Jeff</option>
+										<option>Fiona</option>
+										<option>Warren</option>
+										<option>Leanne</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Dispensing:</label>
+									<select class="form-control form-control-lg" id="exampleFormControlSelect1" style="font-size: 3.25rem; height:50px">
+										<option>Raf</option>
+										<option>Jeff</option>
+										<option>Fiona</option>
+										<option>Warren</option>
+										<option>Leanne</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Check:</label>
+									<select class="form-control form-control-lg" id="exampleFormControlSelect1" style="font-size: 3.25rem; height:50px" onchange="ShowSectionHideOthers('Outcomes')">
+										<option>Raf</option>
+										<option>Jeff</option>
+										<option>Fiona</option>
+										<option>Warren</option>
+										<option>Leanne</option>
+									</select>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container section" id="Outcomes" style="margin-top:20pt; display:none">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">Action</h3>
+				</div>
+				<div class="panel-body">
+					<div class="col-md-6">
+						<button type="button" class="btn btn-success btn-lg btn-block" onclick="ShowSectionHideOthers('ErrorTypeChooser')">Fixed Error</button>
+						<button type="button" class="btn btn-success btn-lg btn-block"  onclick="ShowSectionHideOthers('ErrorTypeChooser')">Prescriber Notified</button>
+					</div>
+					<div class="col-md-6">
+						<button type="button" class="btn btn-success btn-lg btn-block" onclick="ShowSectionHideOthers('ErrorTypeChooser')">Dosage Corrected</button>
+						<button type="button" class="btn btn-success btn-lg btn-block" onclick="ShowSectionHideOthers('ErrorTypeChooser')">Prescription Corrected</button>
+					</div>
+				</div>
+			</div>
+			@*<button type="button" class="btn btn-success btn-lg btn-block" onclick="ShowSectionHideOthers('ErrorTypeChooser')">Complete</button>*@
+		</div>
 	</div>
 	<div class="col-md-2">
 		<span class="glyphicon glyphicon-arrow-right navArrow"></span>
 	</div>
 </div>
+<script>
+	function ShowSectionHideOthers(type) {
+		$("div.section").each(function (index) {
+			//console.log(index + ": " + $(this).text());
+			if ($(this)[0].id != type) {
+				$(this).css("display", "none");
+			}
+			else
+			{
+				$(this).css("display", "block");
+			}
+		});
+	}
+
+</script>
