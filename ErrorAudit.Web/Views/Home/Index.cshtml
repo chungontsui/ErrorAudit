@@ -7,12 +7,6 @@
 		<span class="glyphicon glyphicon-arrow-left navArrow"></span>
 	</div>
 	<div class="col-md-8">
-		@*<ul class="nav nav-tabs" style="margin-top:10px">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Menu 1</a></li>
-				<li><a href="#">Menu 2</a></li>
-				<li><a href="#">Menu 3</a></li>
-			</ul>*@
 
 		<div style="margin-top:10%" class="section" id="ErrorTypeChooser">
 			<button type="button" class="btn btn-primary btn-lg btn-block" style="height:100px" onclick="ShowSectionHideOthers('EntryErrors')">Entry</button>
@@ -187,6 +181,25 @@
 	</div>
 </div>
 <script>
+
+	var data = {
+		error: "",
+		ProcessingStaffEnter: "",
+		ProcessingStaffDispensing: "",
+		ProcessingStaffChecked: "",
+		NoticedStaffEnter: "",
+		NoticedStaffDispensing: "",
+		NoticedStaffChecked: "",
+		Outcomes: ""
+	}
+
+	function ProcessValue
+
+	function AddToData(section, value)
+	{
+		data[section] = value;
+	}
+
 	function ShowSectionHideOthers(type) {
 		$("div.section").each(function (index) {
 			//console.log(index + ": " + $(this).text());
@@ -198,6 +211,11 @@
 				$(this).css("display", "block");
 			}
 		});
+	}
+
+	function SubmitData()
+	{
+
 	}
 
 </script>
