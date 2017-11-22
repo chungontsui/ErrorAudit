@@ -20,14 +20,14 @@
 				</div>
 				<div class="panel-body">
 					<div class="col-md-6">
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Directions</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">History not checked</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Dose innappropriate</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Directions</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">History not checked</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Dose innappropriate</button>
 					</div>
 					<div class="col-md-6">
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Brand Choosen</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Quantity/Period Of Supply</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorreect Calculations</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Brand Choosen</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Quantity/Period Of Supply</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorreect Calculations</button>
 					</div>
 				</div>
 			</div>
@@ -41,19 +41,19 @@
 				</div>
 				<div class="panel-body">
 					<div class="col-md-6">
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Medicine</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Strength</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Quantity</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Correct Product Form</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Brand</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Medicine</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Strength</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Quantity</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Correct Product Form</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Brand</button>
 					</div>
 					<div class="col-md-6">
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Interactions Identified</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Dose Inappropriate</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Drug Omission</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Interactions Identified</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Patient Supplied</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block" onclick="ShowSectionHideOthers('ProcessingStaff')">Miscellaneous</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Interactions Identified</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Dose Inappropriate</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Drug Omission</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Interactions Identified</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Patient Supplied</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Miscellaneous</button>
 					</div>
 				</div>
 			</div>
@@ -71,7 +71,8 @@
 							<form>
 								<div class="form-group">
 									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Enter:</label>
-									<select class="form-control form-control-lg" id="exampleFormControlSelect1" style="font-size: 3.25rem; height:50px">
+									<select class="form-control form-control-lg pstaff" id="ProcessingStaffEnter" style="font-size: 3.25rem; height:50px">
+										<option>Please Select</option>
 										<option>Raf</option>
 										<option>Jeff</option>
 										<option>Fiona</option>
@@ -82,7 +83,8 @@
 
 								<div class="form-group">
 									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Dispensing:</label>
-									<select class="form-control form-control-lg" id="exampleFormControlSelect1" style="font-size: 3.25rem; height:50px">
+									<select class="form-control form-control-lg pstaff" id="ProcessingStaffDispensing" style="font-size: 3.25rem; height:50px">
+										<option>Please Select</option>
 										<option>Raf</option>
 										<option>Jeff</option>
 										<option>Fiona</option>
@@ -93,7 +95,8 @@
 
 								<div class="form-group">
 									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Check:</label>
-									<select class="form-control form-control-lg" id="exampleFormControlSelect1" style="font-size: 3.25rem; height:50px" onchange="ShowSectionHideOthers('NoticedStaff')">
+									<select class="form-control form-control-lg pstaffLast" id="ProcessingStaffChecked" style="font-size: 3.25rem; height:50px" onchange="ShowSectionHideOthers('NoticedStaff')">
+										<option>Please Select</option>
 										<option>Raf</option>
 										<option>Jeff</option>
 										<option>Fiona</option>
@@ -120,7 +123,8 @@
 							<form>
 								<div class="form-group">
 									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Enter:</label>
-									<select class="form-control form-control-lg" id="exampleFormControlSelect1" style="font-size: 3.25rem; height:50px">
+									<select class="form-control form-control-lg nstaff" id="NoticedStaffEnter" style="font-size: 3.25rem; height:50px">
+										<option>Please Select</option>
 										<option>Raf</option>
 										<option>Jeff</option>
 										<option>Fiona</option>
@@ -131,7 +135,8 @@
 
 								<div class="form-group">
 									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Dispensing:</label>
-									<select class="form-control form-control-lg" id="exampleFormControlSelect1" style="font-size: 3.25rem; height:50px">
+									<select class="form-control form-control-lg nstaff" id="NoticedStaffDispensing" style="font-size: 3.25rem; height:50px">
+										<option>Please Select</option>
 										<option>Raf</option>
 										<option>Jeff</option>
 										<option>Fiona</option>
@@ -142,7 +147,8 @@
 
 								<div class="form-group">
 									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Check:</label>
-									<select class="form-control form-control-lg" id="exampleFormControlSelect1" style="font-size: 3.25rem; height:50px" onchange="ShowSectionHideOthers('Outcomes')">
+									<select class="form-control form-control-lg nstaffLast" id="NoticedStaffChecked" style="font-size: 3.25rem; height:50px" onchange="ShowSectionHideOthers('Outcomes')">
+										<option>Please Select</option>
 										<option>Raf</option>
 										<option>Jeff</option>
 										<option>Fiona</option>
@@ -164,12 +170,12 @@
 				</div>
 				<div class="panel-body">
 					<div class="col-md-6">
-						<button type="button" class="btn btn-success btn-lg btn-block" onclick="ShowSectionHideOthers('ErrorTypeChooser')">Fixed Error</button>
-						<button type="button" class="btn btn-success btn-lg btn-block"  onclick="ShowSectionHideOthers('ErrorTypeChooser')">Prescriber Notified</button>
+						<button type="button" class="btn btn-success btn-lg btn-block outcome" onclick="ShowSectionHideOthers('ErrorTypeChooser')">Fixed Error</button>
+						<button type="button" class="btn btn-success btn-lg btn-block outcome"  onclick="ShowSectionHideOthers('ErrorTypeChooser')">Prescriber Notified</button>
 					</div>
 					<div class="col-md-6">
-						<button type="button" class="btn btn-success btn-lg btn-block" onclick="ShowSectionHideOthers('ErrorTypeChooser')">Dosage Corrected</button>
-						<button type="button" class="btn btn-success btn-lg btn-block" onclick="ShowSectionHideOthers('ErrorTypeChooser')">Prescription Corrected</button>
+						<button type="button" class="btn btn-success btn-lg btn-block outcome" onclick="ShowSectionHideOthers('ErrorTypeChooser')">Dosage Corrected</button>
+						<button type="button" class="btn btn-success btn-lg btn-block outcome" onclick="ShowSectionHideOthers('ErrorTypeChooser')">Prescription Corrected</button>
 					</div>
 				</div>
 			</div>
@@ -190,10 +196,47 @@
 		NoticedStaffEnter: "",
 		NoticedStaffDispensing: "",
 		NoticedStaffChecked: "",
-		Outcomes: ""
+		Outcome: ""
 	}
 
-	function ProcessValue
+	$(document).ready(function () {
+		$("button.error").each(
+			function () {
+				$(this).on("click", function () { ProcessValue("error", $(this).text(), "ProcessingStaff"); });
+			}
+		);
+
+		$("select.pstaff").each(function () {
+			$(this).change(function () { AddToData($(this).attr("id"), $(this).val()); });
+		});
+
+		$("select.pstaffLast").each(function () {
+			$(this).change(function () { ProcessValue($(this).attr("id"), $(this).val(), "NoticedStaff"); });
+		});
+
+		$("select.nstaff").each(function () {
+			$(this).change(function () { AddToData($(this).attr("id"), $(this).val()); });
+		});
+
+		$("select.nstaffLast").each(function () {
+			$(this).change(function () { ProcessValue($(this).attr("id"), $(this).val(), "Outcomes"); });
+		});
+
+		$("button.outcome").each(
+			function () {
+				$(this).on("click", function () {
+					ProcessValue("Outcome", $(this).text(), "ErrorTypeChooser");
+					SubmitData();
+				});
+			}
+		);
+	});
+
+	function ProcessValue(section, value, nextSection)
+	{
+		AddToData(section, value);
+		ShowSectionHideOthers(nextSection);
+	}
 
 	function AddToData(section, value)
 	{
@@ -215,7 +258,7 @@
 
 	function SubmitData()
 	{
-
+		var data = data;
 	}
 
 </script>
