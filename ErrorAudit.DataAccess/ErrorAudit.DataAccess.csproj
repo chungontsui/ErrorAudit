@@ -50,6 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigDataAccess.cs" />
+    <Compile Include="dbNZGoodiesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbNZGoodiesDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Error.cs">
       <DependentUpon>ErrorAuditModel.tt</DependentUpon>
     </Compile>
@@ -78,6 +83,11 @@
       <DependentUpon>ErrorAuditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Staff.cs">
       <DependentUpon>ErrorAuditModel.tt</DependentUpon>
     </Compile>
@@ -88,10 +98,25 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ErrorAuditModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="dbNZGoodiesDataSet.xsc">
+      <DependentUpon>dbNZGoodiesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dbNZGoodiesDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbNZGoodiesDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbNZGoodiesDataSet.xss">
+      <DependentUpon>dbNZGoodiesDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ErrorAuditModel.edmx.diagram">
       <DependentUpon>ErrorAuditModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ErrorAuditModel.Context.tt">
@@ -107,6 +132,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ErrorAuditReport.rdlc" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

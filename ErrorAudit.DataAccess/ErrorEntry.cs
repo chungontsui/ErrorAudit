@@ -27,5 +27,6 @@ namespace ErrorAudit.DataAccess
         public int NoticedStaffEnter { get; set; }
         public int NoticedStaffDispensing { get; set; }
         public int NoticedStaffChecked { get; set; }
+        public string ScriptNumber { get; set; }
     }
 }

@@ -18,6 +18,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScriptNumber" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ErrorId" Type="int" Nullable="false" />
           <Property Name="OrganizationId" Type="int" Nullable="false" />
           <Property Name="ProcessingStaffEnter" Type="int" Nullable="false" />
@@ -92,6 +93,7 @@
           <Property Name="NoticedStaffEnter" Type="Int32" Nullable="false" />
           <Property Name="NoticedStaffDispensing" Type="Int32" Nullable="false" />
           <Property Name="NoticedStaffChecked" Type="Int32" Nullable="false" />
+          <Property Name="ScriptNumber" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Organization">
           <Key>
@@ -143,6 +145,7 @@
           <EntitySetMapping Name="ErrorEntry">
             <EntityTypeMapping TypeName="ErrorAuditModel.ErrorEntry">
               <MappingFragment StoreEntitySet="ErrorEntry">
+                <ScalarProperty Name="ScriptNumber" ColumnName="ScriptNumber" />
                 <ScalarProperty Name="NoticedStaffChecked" ColumnName="NoticedStaffChecked" />
                 <ScalarProperty Name="NoticedStaffDispensing" ColumnName="NoticedStaffDispensing" />
                 <ScalarProperty Name="NoticedStaffEnter" ColumnName="NoticedStaffEnter" />
