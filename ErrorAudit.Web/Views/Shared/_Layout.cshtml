@@ -6,10 +6,35 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
 	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/angularjs")
     @Scripts.Render("~/bundles/modernizr")
+	<script>
+		var app = angular.module("ErrorAuditApp", []);
+		app.controller('MainCtrl', function ($scope) {
+			$scope.greeting = "Hello There";
 
+			$scope.data = {
+				ScriptNumber: "",
+				error: [],
+				ProcessingStaffEnter: "",
+				ProcessingStaffDispensing: "",
+				ProcessingStaffChecked: "",
+				NoticedStaffEnter: "",
+				NoticedStaffDispensing: "",
+				NoticedStaffChecked: "",
+				Outcome: ""
+			}
+
+			$scope.Errors = 
+			{
+				retriveErrors: function () {
+
+				},
+			}
+		});
+	</script>
 </head>
-<body>
+<body ng-app="ErrorAuditApp">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -30,7 +55,7 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content" ng-controller="MainCtrl">
         @RenderBody()
         <hr />
         <footer>

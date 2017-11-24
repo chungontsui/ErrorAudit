@@ -10,7 +10,7 @@
 
 		<div style="margin-top:10%" class="section" id="ErrorTypeChooser">
 			<div class="form-group">
-				<label for="ScriptNumber" style ="font-size: 50px;">Script Number</label>
+				<label for="ScriptNumber" style ="font-size: 50px;">Script Number {{greeting}}</label>
 				<input type="number" style ="font-size: 60px; height: 80px;"class="form-control" id="ScriptNumber" placeholder="Enter Script Number">
 			</div>
 			<button type="button" class="btn btn-primary btn-lg btn-block errorType" style="height:100px" data-errortype="EntryErrors" onclick="ShowSectionHideOthers('EntryErrors')">Entry</button>
@@ -24,18 +24,20 @@
 				</div>
 				<div class="panel-body">
 					<div class="col-md-6">
-						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Directions</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">History not checked</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Dose innappropriate</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error">Incorrect Directions</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error">History not checked</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error">Dose innappropriate</button>
 					</div>
 					<div class="col-md-6">
-						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Brand Choosen</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorrect Quantity/Period Of Supply</button>
-						<button type="button" class="btn btn-primary btn-lg btn-block error" onclick="ShowSectionHideOthers('ProcessingStaff')">Incorreect Calculations</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error">Incorrect Brand Choosen</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error">Incorrect Quantity/Period Of Supply</button>
+						<button type="button" class="btn btn-primary btn-lg btn-block error">Incorreect Calculations</button>
+					</div>
+					<div class="col-md-12" style="text-align: center;">
+						<button type="button" style="margin-top: 20px; padding-left: 60px; padding-right: 60px;" class="btn btn-lg btn-success error" onclick="ShowSectionHideOthers('ProcessingStaff')">Next</button>
 					</div>
 				</div>
 			</div>
-
 		</div>
 
 		<div class="container section" id="DispensingErrors" style="margin-top:20pt; display:none">
@@ -194,7 +196,7 @@
 
 	var data = {
 		ScriptNumber: "",
-		error: "",
+		error: [],
 		ProcessingStaffEnter: "",
 		ProcessingStaffDispensing: "",
 		ProcessingStaffChecked: "",
@@ -218,7 +220,10 @@
 
 		$("button.error").each(
 			function () {
-				$(this).on("click", function () { ProcessValue("error", $(this).text(), "ProcessingStaff"); });
+				$(this).on("click", function () {
+					//ProcessValue("error", $(this).text(), "ProcessingStaff"); 
+					this.data.error.push($(this).text());
+				});
 			}
 		);
 

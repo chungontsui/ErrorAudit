@@ -10,7 +10,6 @@ namespace ErrorAudit.Web.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "ErrorAudit.Web.Models.ApplicationDbContext";
         }
 
         protected override void Seed(ErrorAudit.Web.Models.ApplicationDbContext context)
