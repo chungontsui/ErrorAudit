@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ErrorAudit.DataAccess.ViewModel;
 
 namespace ErrorAudit.DataAccess
 {
@@ -90,6 +91,16 @@ namespace ErrorAudit.DataAccess
 			{
 				db.Error.Remove(error);
 				db.SaveChanges();
+			}
+		}
+		#endregion
+
+		#region ErrorType
+		public IEnumerable<ErrorType> GetErrorType()
+		{
+			using (var context = new dbNZGoodiesEntities())
+			{
+				return context.ErrorType.ToList();
 			}
 		}
 		#endregion
@@ -386,6 +397,38 @@ namespace ErrorAudit.DataAccess
 				throw new Exception("Fail AddErrorEntry: " + ex.Message);
 			}
 		}
+
+		public void AddErrorEntryFromViewModel(ErrorViewModel NewErrorEntry)
+		{
+			try
+			{
+				using (var context = new dbNZGoodiesEntities())
+				{
+					//Need to sort out HomeController, Frontend passing the staff Ids in first
+					ErrorEntry errorEntry = new ErrorEntry() {
+						OrganizationId = 9999, 
+						CreatedDate = DateTime.Now,
+						UpdateDate = DateTime.Now,
+						//CompletedStaffId = NewErrorEntry.NoticedStaffChecked
+					};
+
+					foreach (int ErrorId in NewErrorEntry.ErrorIds)
+					{
+					
+					}
+					//context.ErrorEntry.Add(NewErrorEntry);
+					//context.SaveChanges();
+				}
+
+				//return NewErrorEntry;
+			}
+			catch (Exception ex)
+			{
+
+				throw new Exception("Fail AddErrorEntry: " + ex.Message);
+			}
+		}
+
 		public ErrorEntry EditErrorEntry(ErrorEntry ErrorEntry)
 		{
 			try

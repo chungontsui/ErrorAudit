@@ -76,6 +76,12 @@
     <Compile Include="ErrorEntry.cs">
       <DependentUpon>ErrorAuditModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ErrorEntryError.cs">
+      <DependentUpon>ErrorAuditModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorType.cs">
+      <DependentUpon>ErrorAuditModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Organization.cs">
       <DependentUpon>ErrorAuditModel.tt</DependentUpon>
     </Compile>
@@ -91,6 +97,7 @@
     <Compile Include="Staff.cs">
       <DependentUpon>ErrorAuditModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\ErrorViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

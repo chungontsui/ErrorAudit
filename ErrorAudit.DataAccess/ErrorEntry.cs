@@ -16,7 +16,6 @@ namespace ErrorAudit.DataAccess
     {
         public int Id { get; set; }
         public int OrganizationId { get; set; }
-        public int ErrorId { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public Nullable<int> CompletedStaffId { get; set; }

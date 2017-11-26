@@ -12,11 +12,9 @@ namespace ErrorAudit.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Error
+    public partial class ErrorType
     {
         public int Id { get; set; }
-        public string ErrorDescription { get; set; }
-        public string ErrorCode { get; set; }
-        public Nullable<int> ErrorTypeId { get; set; }
+        public string Description { get; set; }
     }
 }

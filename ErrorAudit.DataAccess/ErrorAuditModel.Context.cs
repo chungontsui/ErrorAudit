@@ -30,5 +30,7 @@ namespace ErrorAudit.DataAccess
         public virtual DbSet<Organization> Organization { get; set; }
         public virtual DbSet<Outcome> Outcome { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
+        public virtual DbSet<ErrorType> ErrorType { get; set; }
+        public virtual DbSet<ErrorEntryError> ErrorEntryError { get; set; }
     }
 }
