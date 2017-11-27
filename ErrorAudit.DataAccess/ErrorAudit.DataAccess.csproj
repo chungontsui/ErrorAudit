@@ -98,6 +98,7 @@
       <DependentUpon>ErrorAuditModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\ErrorViewModel.cs" />
+    <Compile Include="ViewModel\ViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

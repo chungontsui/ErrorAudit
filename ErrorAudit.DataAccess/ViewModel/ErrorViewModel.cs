@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ErrorAudit.DataAccess.ViewModel
 {
-	public class ErrorViewModel
+	public class ErrorEntryViewModel
 	{
 		public string ScriptNumber { get; set; }
 		public IEnumerable<int> ErrorIds { get; set; }

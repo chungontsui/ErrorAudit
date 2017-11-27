@@ -1,0 +1,14 @@
+﻿<table>
+	<thead>
+		<tr><td>Code</td><td>Description</td></tr>
+	</thead>
+	<tbody>
+		@{
+			foreach (var e in ViewBag.ErrorViewModel)
+			{
+				<tr><td>e.ErrorCode</td><td>e.ErrorDescription</td></tr>
+			}
+		}
+	</tbody>
+</table>
+@{ Html.RenderPartial("Create"); }

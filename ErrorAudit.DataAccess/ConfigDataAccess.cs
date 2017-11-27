@@ -398,7 +398,7 @@ namespace ErrorAudit.DataAccess
 			}
 		}
 
-		public void AddErrorEntryFromViewModel(ErrorViewModel NewErrorEntry)
+		public void AddErrorEntryFromViewModel(ErrorEntryViewModel NewErrorEntry)
 		{
 			try
 			{

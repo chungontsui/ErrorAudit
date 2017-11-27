@@ -1,130 +1,107 @@
-﻿@{
-	ViewBag.Title = "Home Page";
-}
+﻿
 
-<div class="row">
-	<div class="col-md-2">
-		<span class="glyphicon glyphicon-arrow-left navArrow"></span>
+<div style="margin-top:10%" class="section" id="ErrorTypeChooser">
+	<div class="form-group">
+		<label for="ScriptNumber" style="font-size: 50px;">Script Number</label>
+		<input type="number" style="font-size: 60px; height: 80px;" class="form-control" id="ScriptNumber" placeholder="Enter Script Number">
 	</div>
-	<div class="col-md-8">
+	<button type="button" class="btn btn-primary btn-lg btn-block errorType" style="height:100px" data-errortype="EntryErrors" onclick="ShowSectionHideOthers('EntryErrors')"><h1 style="display: inline;">Entry</h1> <span style="font-size: 30px;" class="glyphicon glyphicon-ok"></span></button>
+	<button type="button" class="btn btn-secondary btn-lg btn-block errorType" style="height:100px" data-errortype="DispensingErrors" onclick="ShowSectionHideOthers('DispensingErrors')">Dispensing</button>
+</div>
 
-		<div style="margin-top:10%" class="section" id="ErrorTypeChooser">
-			<div class="form-group">
-				<label for="ScriptNumber" style="font-size: 50px;">Script Number</label>
-				<input type="number" style="font-size: 60px; height: 80px;" class="form-control" id="ScriptNumber" placeholder="Enter Script Number">
-			</div>
-			<button type="button" class="btn btn-primary btn-lg btn-block errorType" style="height:100px" data-errortype="EntryErrors" onclick="ShowSectionHideOthers('EntryErrors')"><h1 style="display: inline;">Entry</h1> <span style="font-size: 30px;" class="glyphicon glyphicon-ok"></span></button>
-			<button type="button" class="btn btn-secondary btn-lg btn-block errorType" style="height:100px" data-errortype="DispensingErrors" onclick="ShowSectionHideOthers('DispensingErrors')">Dispensing</button>
+<div class="container section" id="EntryErrors" style="margin-top:20pt; display:none">
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Entry Errors</h3>
 		</div>
-
-		<div class="container section" id="EntryErrors" style="margin-top:20pt; display:none">
-
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Entry Errors</h3>
-				</div>
-				<div class="panel-body">
-					<div class="row">
-						<div class="col-md-6">
-							@{
-								foreach (var error in ViewBag.EntryErrors)
-								{
-									if (error.Id % 2 == 1)
-									{
-										<button data-errorId="@error.Id" type="button" class="btn btn-primary btn-lg btn-block error">@error.ErrorDescription</button>
-									}
-
-								}
-							}
-						</div>
-						<div class="col-md-6">
-							@{
-								foreach (var error in ViewBag.EntryErrors)
-								{
-									if (error.Id % 2 == 0)
-									{
-										<button data-errorId="@error.Id" type="button" class="btn btn-primary btn-lg btn-block error">@error.ErrorDescription</button>
-									}
-
-								}
-							}
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12" style="text-align: center;">
-							<button type="button" style="margin-top: 20px; padding-left: 60px; padding-right: 60px;" class="btn btn-lg btn-success" onclick="ShowSectionHideOthers('ProcessingStaff')">Next</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="container section" id="DispensingErrors" style="margin-top:20pt; display:none">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Dispensing Errors</h3>
-				</div>
-				<div class="panel-body">
-					<div class="row">
-						@*<div class="col-md-6">
-								<button type="button" class="btn btn-primary btn-lg btn-block error">Incorrect Medicine</button>
-								<button type="button" class="btn btn-primary btn-lg btn-block error">Incorrect Strength</button>
-								<button type="button" class="btn btn-primary btn-lg btn-block error">Incorrect Quantity</button>
-								<button type="button" class="btn btn-primary btn-lg btn-block error">Correct Product Form</button>
-								<button type="button" class="btn btn-primary btn-lg btn-block error">Incorrect Brand</button>
-							</div>
-							<div class="col-md-6">
-								<button type="button" class="btn btn-primary btn-lg btn-block error">Interactions Identified</button>
-								<button type="button" class="btn btn-primary btn-lg btn-block error">Dose Inappropriate</button>
-								<button type="button" class="btn btn-primary btn-lg btn-block error">Drug Omission</button>
-								<button type="button" class="btn btn-primary btn-lg btn-block error">Interactions Identified</button>
-								<button type="button" class="btn btn-primary btn-lg btn-block error">Incorrect Patient Supplied</button>
-								<button type="button" class="btn btn-primary btn-lg btn-block error">Miscellaneous</button>
-							</div>*@
-						<div class="col-md-6">
-							@{
-								foreach (var error in ViewBag.DispensingErrors)
-								{
-									if (error.Id % 2 == 1)
-									{
-										<button data-errorId="@error.Id" type="button" class="btn btn-primary btn-lg btn-block error">@error.ErrorDescription</button>
-									}
-
-								}
-							}
-						</div>
-						<div class="col-md-6">
-							@{
-								foreach (var error in ViewBag.DispensingErrors)
-								{
-									if (error.Id % 2 == 0)
-									{
-										<button data-errorId="@error.Id" type="button" class="btn btn-primary btn-lg btn-block error">@error.ErrorDescription</button>
-									}
-
-								}
-							}
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12" style="text-align: center;">
-						<button type="button" style="margin-top: 20px; padding-left: 60px; padding-right: 60px;" class="btn btn-lg btn-success" onclick="ShowSectionHideOthers('ProcessingStaff')">Next</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="container section" id="ProcessingStaff" style="margin-top:20pt; display:none">
+		<div class="panel-body">
 			<div class="row">
-				<div class="col-md-12">
-					<div class="panel panel-danger">
-						<div class="panel-heading">
-							<h1 class="panel-title">Processing Staff</h1>
-						</div>
-						<div class="panel-body">
-							<div class="row">
-							<div class="col-md-12">
+				<div class="col-md-6">
+					@{
+						foreach (var error in ViewBag.EntryErrors)
+						{
+							if (error.Id % 2 == 1)
+							{
+								<button data-errorId="@error.Id" type="button" class="btn btn-primary btn-lg btn-block error">@error.ErrorDescription</button>
+							}
+
+						}
+					}
+				</div>
+				<div class="col-md-6">
+					@{
+						foreach (var error in ViewBag.EntryErrors)
+						{
+							if (error.Id % 2 == 0)
+							{
+								<button data-errorId="@error.Id" type="button" class="btn btn-primary btn-lg btn-block error">@error.ErrorDescription</button>
+							}
+
+						}
+					}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" style="text-align: center;">
+					<button type="button" style="margin-top: 20px; padding-left: 60px; padding-right: 60px;" class="btn btn-lg btn-success" onclick="ShowSectionHideOthers('ProcessingStaff')">Next</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container section" id="DispensingErrors" style="margin-top:20pt; display:none">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Dispensing Errors</h3>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-6">
+					@{
+						foreach (var error in ViewBag.DispensingErrors)
+						{
+							if (error.Id % 2 == 1)
+							{
+								<button data-errorId="@error.Id" type="button" class="btn btn-primary btn-lg btn-block error">@error.ErrorDescription</button>
+							}
+
+						}
+					}
+				</div>
+				<div class="col-md-6">
+					@{
+						foreach (var error in ViewBag.DispensingErrors)
+						{
+							if (error.Id % 2 == 0)
+							{
+								<button data-errorId="@error.Id" type="button" class="btn btn-primary btn-lg btn-block error">@error.ErrorDescription</button>
+							}
+
+						}
+					}
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12" style="text-align: center;">
+				<button type="button" style="margin-top: 20px; padding-left: 60px; padding-right: 60px;" class="btn btn-lg btn-success" onclick="ShowSectionHideOthers('ProcessingStaff')">Next</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container section" id="ProcessingStaff" style="margin-top:20pt; display:none">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-danger">
+				<div class="panel-heading">
+					<h1 class="panel-title">Processing Staff</h1>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-12">
 							<form>
 								<div class="form-group">
 									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Enter:</label>
@@ -159,99 +136,26 @@
 									</select>
 								</div>
 							</form>
-							</div>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
 
-		<div class="container section" id="NoticedStaff" style="margin-top:20pt; display:none">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="panel panel-warning">
-						<div class="panel-heading">
-							<h3 class="panel-title">Noticed Staff</h3>
-						</div>
-						<div class="panel-body">
-							<form>
-								<div class="form-group">
-									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Enter:</label>
-									<select class="form-control form-control-lg nstaff" id="NoticedStaffEnter" style="font-size: 3.25rem; height:50px">
-										<option>Please Select</option>
-										@{		foreach (var staff in ViewBag.Staff)
-											{
-												<option value="@staff.Id">@staff.FirstName</option>	}
-										}
-									</select>
-								</div>
-
-								<div class="form-group">
-									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Dispensing:</label>
-									<select class="form-control form-control-lg nstaff" id="NoticedStaffDispensing" style="font-size: 3.25rem; height:50px">
-										<option>Please Select</option>
-										@{		foreach (var staff in ViewBag.Staff)
-											{
-												<option value="@staff.Id">@staff.FirstName</option>	}
-										}
-									</select>
-								</div>
-
-								<div class="form-group">
-									<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Check:</label>
-									<select class="form-control form-control-lg nstaffLast" id="NoticedStaffChecked" style="font-size: 3.25rem; height:50px" onchange="ShowSectionHideOthers('Outcomes')">
-										<option>Please Select</option>
-										@{		foreach (var staff in ViewBag.Staff)
-											{
-												<option value="@staff.Id">@staff.FirstName</option>	}
-										}
-									</select>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="container section" id="Outcomes" style="margin-top:20pt; display:none">
-			<div class="panel panel-success">
+<div class="container section" id="NoticedStaff" style="margin-top:20pt; display:none">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-warning">
 				<div class="panel-heading">
-					<h3 class="panel-title">Action</h3>
+					<h3 class="panel-title">Noticed Staff</h3>
 				</div>
 				<div class="panel-body">
-					<div class="row">
-
-						<div class="col-md-6">
-							@*<button type="button" class="btn btn-success btn-lg btn-block outcome" onclick="ShowSectionHideOthers('ErrorTypeChooser')">Fixed Error</button>
-							<button type="button" class="btn btn-success btn-lg btn-block outcome" onclick="ShowSectionHideOthers('ErrorTypeChooser')">Prescriber Notified</button>*@
-							@{
-								foreach (var outcome in ViewBag.Outcomes)
-								{
-									if (outcome.Id % 2 == 1)
-									{
-										<button data-outcomeId="@outcome.Id" type="button" class="btn btn-primary btn-lg btn-block error">@outcome.OutcomeDescription</button>
-									}
-
-								}
-							}
-						</div>
-						<div class="col-md-6">
-							@{
-								foreach (var outcome in ViewBag.Outcomes)
-								{
-									if (outcome.Id % 2 == 0)
-									{
-										<button data-outcomeId="@outcome.Id" type="button" class="btn btn-primary btn-lg btn-block error">@outcome.OutcomeDescription</button>
-									}
-
-								}
-							}						
-						</div>
+					<form>
 						<div class="form-group">
-							<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Completed By:</label>
-							<select class="form-control form-control-lg cstaff" id="CompletedBy" style="font-size: 3.25rem; height:50px" onchange="ShowSectionHideOthers('Outcomes')">
+							<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Enter:</label>
+							<select class="form-control form-control-lg nstaff" id="NoticedStaffEnter" style="font-size: 3.25rem; height:50px">
 								<option>Please Select</option>
 								@{		foreach (var staff in ViewBag.Staff)
 									{
@@ -259,19 +163,83 @@
 								}
 							</select>
 						</div>
-					</div>
+
+						<div class="form-group">
+							<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Dispensing:</label>
+							<select class="form-control form-control-lg nstaff" id="NoticedStaffDispensing" style="font-size: 3.25rem; height:50px">
+								<option>Please Select</option>
+								@{		foreach (var staff in ViewBag.Staff)
+									{
+										<option value="@staff.Id">@staff.FirstName</option>	}
+								}
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Check:</label>
+							<select class="form-control form-control-lg nstaffLast" id="NoticedStaffChecked" style="font-size: 3.25rem; height:50px" onchange="ShowSectionHideOthers('Outcomes')">
+								<option>Please Select</option>
+								@{		foreach (var staff in ViewBag.Staff)
+									{
+										<option value="@staff.Id">@staff.FirstName</option>	}
+								}
+							</select>
+						</div>
+					</form>
 				</div>
-				@*<button type="button" class="btn btn-success btn-lg btn-block" onclick="ShowSectionHideOthers('ErrorTypeChooser')">Complete</button>*@
 			</div>
 		</div>
-
-	</div>
-
-
-	<div class="col-md-2">
-		<span class="glyphicon glyphicon-arrow-right navArrow"></span>
 	</div>
 </div>
+
+<div class="container section" id="Outcomes" style="margin-top:20pt; display:none">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3 class="panel-title">Action</h3>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+
+				<div class="col-md-6">
+					@{
+						foreach (var outcome in ViewBag.Outcomes)
+						{
+							if (outcome.Id % 2 == 1)
+							{
+								<button data-outcomeId="@outcome.Id" type="button" class="btn btn-primary btn-lg btn-block error">@outcome.OutcomeDescription</button>
+							}
+
+						}
+					}
+				</div>
+				<div class="col-md-6">
+					@{
+						foreach (var outcome in ViewBag.Outcomes)
+						{
+							if (outcome.Id % 2 == 0)
+							{
+								<button data-outcomeId="@outcome.Id" type="button" class="btn btn-primary btn-lg btn-block error">@outcome.OutcomeDescription</button>
+							}
+
+						}
+					}
+				</div>
+				<div class="form-group">
+					<label for="exampleFormControlSelect1" style="font-size: 3.25rem;">Completed By:</label>
+					<select class="form-control form-control-lg cstaff" id="CompletedBy" style="font-size: 3.25rem; height:50px" onchange="ShowSectionHideOthers('Outcomes')">
+						<option>Please Select</option>
+						@{		foreach (var staff in ViewBag.Staff)
+							{
+								<option value="@staff.Id">@staff.FirstName</option>	}
+						}
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 <script>
 
 	var data = {

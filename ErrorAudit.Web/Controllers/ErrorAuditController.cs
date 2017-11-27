@@ -11,7 +11,7 @@ namespace ErrorAudit.Web.Controllers
 {
     public class ErrorAuditController : ApiController
     {
-		public void Post(ErrorViewModel error)
+		public void Post(ErrorEntryViewModel error)
 		{
 			ConfigDataAccess da = new ConfigDataAccess();
 			//da.AddErrorEntry(error);
