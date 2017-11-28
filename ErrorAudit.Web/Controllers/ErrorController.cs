@@ -46,6 +46,13 @@ namespace ErrorAudit.Web.Controllers
 			return View();
 		}
 
+		// GET: Error/Create
+		//public ActionResult Create(ErrorViewModel EditError)
+		//{
+		//	ViewBag.EditError = EditError;
+		//	return View();
+		//}
+
 		// POST: Error/Create
 		[HttpPost]
 		public ActionResult Create(FormCollection data)
@@ -63,9 +70,17 @@ namespace ErrorAudit.Web.Controllers
 		}
 
 		// GET: Error/Edit/5
-		public ActionResult Edit(int id)
+		public ActionResult Edit(ErrorViewModel EditError)
 		{
+			ViewBag.EditError = EditError;
 			return View();
+		}
+
+		public ActionResult UpdateEdit(ErrorViewModel EditError)
+		{
+
+			da.EditError(new Error() { ErrorCode = EditError.Code,  });
+			return RedirectToAction("Index");
 		}
 
 		// POST: Error/Edit/5

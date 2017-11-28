@@ -1,4 +1,4 @@
-﻿<table>
+﻿<table class="table">
 	<thead>
 		<tr><td>Code</td><td>Description</td></tr>
 	</thead>
@@ -6,7 +6,7 @@
 		@{
 			foreach (var e in ViewBag.ErrorViewModel)
 			{
-				<tr><td>e.ErrorCode</td><td>e.ErrorDescription</td></tr>
+				<tr><td>@e.Code</td><td>@e.Description</td></tr>
 			}
 		}
 	</tbody>
