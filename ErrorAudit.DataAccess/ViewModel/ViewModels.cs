@@ -9,6 +9,8 @@ namespace ErrorAudit.DataAccess.ViewModel
 {
 	public class ErrorViewModel
 	{
+		public int Id { get; set; }
+
 		[Required(AllowEmptyStrings = true)]
 		[Display(Name = "Code")]
 		public string Code { get; set; }

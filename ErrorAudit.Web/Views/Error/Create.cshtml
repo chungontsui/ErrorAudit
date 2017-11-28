@@ -6,7 +6,10 @@
 	string EditCode = editError != null ? editError.Code : "";
 	string EditDescription = editError != null ? editError.Description : "";
 
+
 	@Html.AntiForgeryToken()
+
+	@Html.ValueFor(m => m.Id);
 
 	<div class="form-group">
 		@Html.LabelFor(m => m.Code, new { @class = "col-md-2 control-label" })
