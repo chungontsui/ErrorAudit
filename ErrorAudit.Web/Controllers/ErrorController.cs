@@ -43,6 +43,16 @@ namespace ErrorAudit.Web.Controllers
 		// GET: Error/Create
 		public ActionResult Create()
 		{
+			List<SelectListItem> errorTypes = new List<SelectListItem>();
+
+			foreach (ErrorType et in da.GetErrorType())
+			{
+				errorTypes.Add(new SelectListItem() { Text = et.Description, Value = et.Id.ToString() });
+			}
+
+			errorTypes.First().Selected = true;
+
+			ViewData.Add("ErrorTypes", errorTypes);
 			return View();
 		}
 

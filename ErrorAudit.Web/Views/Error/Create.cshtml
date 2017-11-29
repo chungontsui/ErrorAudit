@@ -1,11 +1,14 @@
 ﻿@model ErrorAudit.DataAccess.ViewModel.ErrorViewModel
 
-@using (Html.BeginForm("Create", "Error", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
+@{ 
 	var editError = ViewBag.EditError;
 	string EditCode = editError != null ? editError.Code : "";
 	string EditDescription = editError != null ? editError.Description : "";
+	string ControllerAction = editError == null ? "Create" : "Edit";
+}
 
+@using (Html.BeginForm(ControllerAction, "Error", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
 
 	@Html.AntiForgeryToken()
 
