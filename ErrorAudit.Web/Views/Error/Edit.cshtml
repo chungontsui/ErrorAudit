@@ -1,12 +1,11 @@
-﻿@model ErrorAudit.DataAccess.ViewModel.CreateErrorViewModel
+﻿@model ErrorAudit.DataAccess.ViewModel.UpdateErrorViewModel
 
 
-@using (Html.BeginForm("Create", "Error", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Edit", "Error", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-	//SelectList errorTypeList = ViewBag.ErrorTypes;
-	
-	@Html.AntiForgeryToken()
 
+	@Html.AntiForgeryToken()
+	@Html.HiddenFor(m => m.Id);
 	<div class="form-group">
 		@Html.LabelFor(m => m.Code, new { @class = "col-md-2 control-label" })
 		<div class="col-md-10">
@@ -23,16 +22,17 @@
 	</div>
 	@Html.ValidationSummary("", new { @class = "text-danger" })
 	<div class="form-group">
-		@Html.Label("Error Type", new { @class = "col-md-2 control-label" })
+		@Html.LabelFor(m => m.ErrorType, new { @class = "col-md-2 control-label" })
 		<div class="col-md-10">
-			@Html.DropDownList("ErrorType", ViewBag.ErrorTypes as IEnumerable<SelectListItem>, new { @class = "form-control" })
+			@Html.DropDownListFor(m => m.ErrorType, ViewBag.ErrorTypes as IEnumerable<SelectListItem>, new { @class = "form-control" })
 		</div>
 	</div>
 
 	<div class="form-group">
 		<div class="col-md-offset-2 col-md-10">
-			<input type="submit" class="btn btn-default" value="Add New Error" />
+			<input type="submit" class="btn btn-default" value="Update Error" />
 		</div>
 	</div>
 }
+
 

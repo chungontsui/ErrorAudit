@@ -14,23 +14,34 @@ namespace ErrorAudit.Web.Controllers
 		// GET: Error
 		public ActionResult Index()
 		{
-			List<ErrorViewModel> ev = new List<ErrorViewModel>();
+			List<UpdateErrorViewModel> ev = new List<UpdateErrorViewModel>();
+
 			foreach (Error e in da.GetError())
 			{
-				ev.Add(new ErrorViewModel() { Code = e.ErrorCode, Description = e.ErrorDescription });
+				ev.Add(new UpdateErrorViewModel() { Id = e.Id, Code = e.ErrorCode, Description = e.ErrorDescription });
 			}
 			ViewData.Add("ErrorViewModel", ev);
 
-			List<SelectListItem> errorTypes = new List<SelectListItem>();
+			//List<SelectListItem> errorTypes = new List<SelectListItem>();
+
+			//foreach (ErrorType et in da.GetErrorType())
+			//{
+			//	errorTypes.Add(new SelectListItem() { Text = et.Description, Value = et.Id.ToString() });
+			//}
+
+			//errorTypes.First().Selected = true;
+
+			//ViewData.Add("ErrorTypes", errorTypes);
+
+			var errorTypes = new List<SelectListItem>();
 
 			foreach (ErrorType et in da.GetErrorType())
 			{
 				errorTypes.Add(new SelectListItem() { Text = et.Description, Value = et.Id.ToString() });
 			}
 
-			errorTypes.First().Selected = true;
+			ViewBag.ErrorTypes = errorTypes;
 
-			ViewData.Add("ErrorTypes", errorTypes);
 			return View();
 		}
 
@@ -43,16 +54,18 @@ namespace ErrorAudit.Web.Controllers
 		// GET: Error/Create
 		public ActionResult Create()
 		{
-			List<SelectListItem> errorTypes = new List<SelectListItem>();
+			var errorTypes = new List<SelectListItem>();
 
 			foreach (ErrorType et in da.GetErrorType())
 			{
 				errorTypes.Add(new SelectListItem() { Text = et.Description, Value = et.Id.ToString() });
 			}
 
-			errorTypes.First().Selected = true;
+			ViewBag.ErrorTypes = errorTypes;
 
-			ViewData.Add("ErrorTypes", errorTypes);
+			//errorTypes.First().Selected = true;
+
+			//ViewData.Add("ErrorTypes", errorTypes);
 			return View();
 		}
 
@@ -65,11 +78,11 @@ namespace ErrorAudit.Web.Controllers
 
 		// POST: Error/Create
 		[HttpPost]
-		public ActionResult Create(FormCollection data)
+		public ActionResult Create(CreateErrorViewModel data)
 		{
 			try
 			{
-				da.AddError(new Error() { ErrorCode = data.Get("Code"), ErrorDescription = data.Get("Description") });
+				da.AddError(new Error() { ErrorCode = data.Code, ErrorDescription = data.Description });
 
 				return RedirectToAction("Index");
 			}
@@ -80,34 +93,36 @@ namespace ErrorAudit.Web.Controllers
 		}
 
 		// GET: Error/Edit/5
-		public ActionResult Edit(ErrorViewModel EditError)
+		public ActionResult Edit(int Id)
 		{
-			ViewBag.EditError = EditError;
+			var editError = da.GetErrorById(Id);
+			ViewData.Model = editError;
 			return View();
 		}
-
-		public ActionResult UpdateEdit(ErrorViewModel EditError)
+		
+		[HttpPost]
+		public ActionResult Edit(UpdateErrorViewModel EditError)
 		{
-
-			da.EditError(new Error() { ErrorCode = EditError.Code,  });
+			
+			da.EditError(new Error() { Id = EditError.Id, ErrorDescription = EditError.Description, ErrorCode = EditError.Code,  });
 			return RedirectToAction("Index");
 		}
 
 		// POST: Error/Edit/5
-		[HttpPost]
-		public ActionResult Edit(int id, FormCollection collection)
-		{
-			try
-			{
-				// TODO: Add update logic here
+		//[HttpPost]
+		//public ActionResult Edit(int id, FormCollection collection)
+		//{
+		//	try
+		//	{
+		//		// TODO: Add update logic here
 
-				return RedirectToAction("Index");
-			}
-			catch
-			{
-				return View();
-			}
-		}
+		//		return RedirectToAction("Index");
+		//	}
+		//	catch
+		//	{
+		//		return View();
+		//	}
+		//}
 
 		// GET: Error/Delete/5
 		public ActionResult Delete(int id)
