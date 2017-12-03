@@ -6,9 +6,8 @@
 		@{
 			foreach (var e in ViewBag.ErrorViewModel)
 			{
-				<tr><td>@e.Code</td><td>@e.Description</td></tr>
+				<tr><td>@Html.ActionLink("Edit", "Edit", new { Id = e.Id })</td><td>@e.Code</td><td>@e.Description</td></tr>
 			}
 		}
 	</tbody>
 </table>
-@{ Html.RenderPartial("Create"); }

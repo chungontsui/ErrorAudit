@@ -7,8 +7,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ErrorAudit.DataAccess.ViewModel
 {
-	public class CreateErrorViewModel
+	public class ErrorViewModel
 	{
+		[Required]
+		public int Id { get; set; }
+
 		[Required(AllowEmptyStrings = true)]
 		[Display(Name = "Code")]
 		public string Code { get; set; }
@@ -18,12 +21,12 @@ namespace ErrorAudit.DataAccess.ViewModel
 		public string Description { get; set; }
 
 		[Display(Name = "Error Type")]
-		public string ErrorType { get; set; }
+		public int? ErrorType { get; set; }
 	}
 
-	public class UpdateErrorViewModel: CreateErrorViewModel
-	{
-		[Required]
-		public int Id { get; set; }
-	}
+	//public class ErrorViewModel: ErrorViewModel
+	//{
+	//	[Required]
+	//	public int Id { get; set; }
+	//}
 }
