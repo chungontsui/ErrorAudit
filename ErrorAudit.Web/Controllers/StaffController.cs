@@ -7,37 +7,31 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ErrorAudit.DataAccess;
+using ErrorAudit.DataAccess.ViewModel;
 
 namespace ErrorAudit.Web.Controllers
 {
     public class StaffController : Controller
     {
-        private dbNZGoodiesEntities db = new dbNZGoodiesEntities();
+		private ConfigDataAccess da = new ConfigDataAccess();
 
-        // GET: Staff
-        public ActionResult Index()
-        {
-            return View(db.Staff.ToList());
-        }
+		private List<StaffViewModel> GetAllStaff()
+		{
+			List<StaffViewModel> staffs = new List<StaffViewModel>();
 
-        // GET: Staff/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Staff staff = db.Staff.Find(id);
-            if (staff == null)
-            {
-                return HttpNotFound();
-            }
-            return View(staff);
-        }
+			foreach (Staff s in da.GetStaff())
+			{
+				staffs.Add(new StaffViewModel() { Id = s.Id, FirstName = s.FirstName, LastName = s.LastName, Initial = s.Initial });
+			}
+
+			return staffs;
+		}
 
         // GET: Staff/Create
         public ActionResult Create()
         {
+			ViewData.Add("StaffViewModel", GetAllStaff());
+
             return View();
         }
 
@@ -46,31 +40,29 @@ namespace ErrorAudit.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Initial,OrganizationId")] Staff staff)
+        public ActionResult Create(StaffViewModel s)
         {
-            if (ModelState.IsValid)
-            {
-                db.Staff.Add(staff);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+			da.AddStaff(new Staff() { FirstName = s.FirstName, LastName = s.LastName, Initial = s.Initial });
 
-            return View(staff);
+			ModelState.Clear();
+
+            return View();
         }
 
         // GET: Staff/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Staff staff = db.Staff.Find(id);
-            if (staff == null)
-            {
-                return HttpNotFound();
-            }
-            return View(staff);
+			var editStaff = da.GetStaffById((int)id);
+
+			StaffViewModel sv = new StaffViewModel()
+			{
+				Id = editStaff.Id,
+				FirstName = editStaff.FirstName,
+				LastName = editStaff.LastName,
+				Initial = editStaff.Initial
+			};
+
+            return View(sv);
         }
 
         // POST: Staff/Edit/5
@@ -78,14 +70,9 @@ namespace ErrorAudit.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Initial,OrganizationId")] Staff staff)
+        public ActionResult Edit(StaffViewModel UpdateStaff)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(staff).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+			da
             return View(staff);
         }
 

@@ -14,6 +14,17 @@ namespace ErrorAudit.Web.Controllers
 
 		private List<SelectListItem> _errorType;
 
+		private List<ErrorViewModel> GetAllErrors()
+		{
+			List<ErrorViewModel> ev = new List<ErrorViewModel>();
+
+			foreach (Error e in da.GetError())
+			{
+				ev.Add(new ErrorViewModel() { Id = e.Id, Code = e.ErrorCode, Description = e.ErrorDescription });
+			}
+
+			return ev;
+		}
 
 		private List<SelectListItem> GetErrorType()
 		{
@@ -30,62 +41,12 @@ namespace ErrorAudit.Web.Controllers
 			return _errorType;
 		}
 
-
-		// GET: Error
-		public ActionResult Index()
-		{
-			List<ErrorViewModel> ev = new List<ErrorViewModel>();
-
-			foreach (Error e in da.GetError())
-			{
-				ev.Add(new ErrorViewModel() { Id = e.Id, Code = e.ErrorCode, Description = e.ErrorDescription });
-			}
-			ViewData.Add("ErrorViewModel", ev);
-
-			//List<SelectListItem> errorTypes = new List<SelectListItem>();
-
-			//foreach (ErrorType et in da.GetErrorType())
-			//{
-			//	errorTypes.Add(new SelectListItem() { Text = et.Description, Value = et.Id.ToString() });
-			//}
-
-			//errorTypes.First().Selected = true;
-
-			//ViewData.Add("ErrorTypes", errorTypes);
-
-
-
-			//ViewBag.ErrorTypes = SetErrorType();
-
-			return View();
-		}
-
-		// GET: Error/Details/5
-		public ActionResult Details(int id)
-		{
-			return View();
-		}
-
 		// GET: Error/Create
 		public ActionResult Create()
 		{
+			ViewData.Add("ErrorViewModel", GetAllErrors());
 
-			List<ErrorViewModel> ev = new List<ErrorViewModel>();
-
-			foreach (Error e in da.GetError())
-			{
-				ev.Add(new ErrorViewModel() { Id = e.Id, Code = e.ErrorCode, Description = e.ErrorDescription });
-			}
-			ViewData.Add("ErrorViewModel", ev);
-
-			var errorTypes = new List<SelectListItem>();
-
-			foreach (ErrorType et in da.GetErrorType())
-			{
-				errorTypes.Add(new SelectListItem() { Text = et.Description, Value = et.Id.ToString() });
-			}
-
-			ViewBag.ErrorTypes = errorTypes;
+			ViewBag.ErrorTypes = GetErrorType();
 
 			return View();
 		}
@@ -97,19 +58,13 @@ namespace ErrorAudit.Web.Controllers
 
 			da.AddError(new Error() { ErrorCode = data.Code, ErrorDescription = data.Description });
 
-			List<ErrorViewModel> ev = new List<ErrorViewModel>();
-
-			foreach (Error e in da.GetError())
-			{
-				ev.Add(new ErrorViewModel() { Id = e.Id, Code = e.ErrorCode, Description = e.ErrorDescription });
-			}
-			ViewData.Add("ErrorViewModel", ev);
+			ViewData.Add("ErrorViewModel", GetAllErrors());
 
 			ViewBag.ErrorTypes = GetErrorType();
 
-			ViewBag.Model = new ErrorViewModel();
+			ModelState.Clear();
 
-			return View();
+			return View(new ErrorViewModel());
 		}
 
 		// GET: Error/Edit/5
@@ -117,22 +72,7 @@ namespace ErrorAudit.Web.Controllers
 		{
 			var editError = da.GetErrorById(Id);
 
-			//this.updatingError = new ErrorViewModel() { Id = e.Id, Code = e.ErrorCode, Description = e.ErrorDescription, ErrorType = e.ErrorTypeId == null ? 0 : e.ErrorTypeId.Value};
-
-			//var errorTypes = new List<SelectListItem>();
-
-			//foreach (ErrorType et in da.GetErrorType())
-			//{
-			//	errorTypes.Add(new SelectListItem() { Text = et.Description, Value = et.Id.ToString() });
-			//}
-
-			List<ErrorViewModel> ev = new List<ErrorViewModel>();
-
-			foreach (Error e in da.GetError())
-			{
-				ev.Add(new ErrorViewModel() { Id = e.Id, Code = e.ErrorCode, Description = e.ErrorDescription });
-			}
-			ViewData.Add("ErrorViewModel", ev);
+			ViewData.Add("ErrorViewModel", GetAllErrors());
 
 			ViewBag.ErrorTypes = GetErrorType();
 
@@ -150,7 +90,6 @@ namespace ErrorAudit.Web.Controllers
 		[HttpPost]
 		public ActionResult Edit(ErrorViewModel EditError)
 		{
-			
 			da.EditError(new Error() { Id = EditError.Id, ErrorDescription = EditError.Description, ErrorCode = EditError.Code,  });
 			return RedirectToAction("Create");
 		}

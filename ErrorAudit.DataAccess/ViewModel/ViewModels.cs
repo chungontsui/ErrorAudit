@@ -12,6 +12,7 @@ namespace ErrorAudit.DataAccess.ViewModel
 		[Required]
 		public int Id { get; set; }
 
+		
 		[Required(AllowEmptyStrings = true)]
 		[Display(Name = "Code")]
 		public string Code { get; set; }
@@ -24,9 +25,17 @@ namespace ErrorAudit.DataAccess.ViewModel
 		public int? ErrorType { get; set; }
 	}
 
-	//public class ErrorViewModel: ErrorViewModel
-	//{
-	//	[Required]
-	//	public int Id { get; set; }
-	//}
+	public class StaffViewModel
+	{
+		[Required]
+		public int Id { get; set; }
+
+		[Required]
+		[Display(Name = "First Name")]
+		public string FirstName { get; set; }
+		[Display(Name = "Last Name")]
+		public string LastName { get; set; }
+
+		public string Initial { get; set; }
+	}
 }
