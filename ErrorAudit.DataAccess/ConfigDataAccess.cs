@@ -398,6 +398,45 @@ namespace ErrorAudit.DataAccess
 			}
 		}
 
+		public ErrorEntry AddErrorViewModel(ErrorEntryViewModel NewError)
+		{
+			ErrorEntry _errorEntry = new ErrorEntry()
+			{
+				CompletedStaffId = NewError.CompletedByStaffId,
+				NoticedStaffChecked = NewError.NoticedStaffChecked,
+				CreatedDate = DateTime.Now,
+				NoticedStaffDispensing = NewError.NoticedStaffDispensing,
+				NoticedStaffEnter = NewError.NoticedStaffEnter,
+				OrganizationId = 9999,
+				OutcomeId = NewError.OutcomeId,
+				ProcessingStaffChecked = NewError.ProcessingStaffChecked,
+				ProcessingStaffDispensing = NewError.ProcessingStaffDispensing,
+				ProcessingStaffEnter = NewError.ProcessingStaffEnter,
+				ScriptNumber = NewError.ScriptNumber
+			};
+
+			var newErrorEntry = AddErrorEntry(_errorEntry);
+
+			List<ErrorEntryError> lstEEE = new List<ErrorEntryError>();
+
+			foreach (int errorId in NewError.ErrorIds)
+			{
+				lstEEE.Add(new ErrorEntryError() { ErrorId = newErrorEntry.Id, ErrorEntryId = errorId });
+			}
+
+			AddErrorEntryErrorList(lstEEE);
+
+			try
+			{
+				return _errorEntry;
+			}
+			catch (Exception ex)
+			{
+
+				throw new Exception("Fail AddErrorEntry: " + ex.Message);
+			}
+		}
+
 		public void AddErrorEntryFromViewModel(ErrorEntryViewModel NewErrorEntry)
 		{
 			try
@@ -405,8 +444,9 @@ namespace ErrorAudit.DataAccess
 				using (var context = new dbNZGoodiesEntities())
 				{
 					//Need to sort out HomeController, Frontend passing the staff Ids in first
-					ErrorEntry errorEntry = new ErrorEntry() {
-						OrganizationId = 9999, 
+					ErrorEntry errorEntry = new ErrorEntry()
+					{
+						OrganizationId = 9999,
 						CreatedDate = DateTime.Now,
 						UpdateDate = DateTime.Now,
 						//CompletedStaffId = NewErrorEntry.NoticedStaffChecked
@@ -414,7 +454,7 @@ namespace ErrorAudit.DataAccess
 
 					foreach (int ErrorId in NewErrorEntry.ErrorIds)
 					{
-					
+
 					}
 					//context.ErrorEntry.Add(NewErrorEntry);
 					//context.SaveChanges();
@@ -457,6 +497,34 @@ namespace ErrorAudit.DataAccess
 			{
 				db.ErrorEntry.Remove(ErrorEntry);
 				db.SaveChanges();
+			}
+		}
+		#endregion
+
+		#region ErrorEntryError
+		public void AddErrorEntryError(ErrorEntryError errorEntryError)
+		{
+			using (var context = new dbNZGoodiesEntities())
+			{
+				context.ErrorEntryError.Add(errorEntryError);
+				context.SaveChanges();
+			}
+		}
+
+		public void AddErrorEntryErrorList(IEnumerable<ErrorEntryError> errorEntryErrors)
+		{
+			using (var context = new dbNZGoodiesEntities())
+			{
+				context.ErrorEntryError.AddRange(errorEntryErrors);
+				context.SaveChanges();
+			}
+		}
+
+		public IEnumerable<ErrorEntryError> GetErrorEntryErrorByErrorId(int ErrorId)
+		{
+			using (var context = new dbNZGoodiesEntities())
+			{
+				return context.ErrorEntryError.Where(ee => ee.ErrorId == ErrorId).ToList();
 			}
 		}
 		#endregion

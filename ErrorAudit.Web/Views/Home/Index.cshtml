@@ -244,7 +244,7 @@
 
 	var data = {
 		ScriptNumber: "",
-		error: [],
+		ErrorIds: [],
 		ProcessingStaffEnter: "",
 		ProcessingStaffDispensing: "",
 		ProcessingStaffChecked: "",
@@ -271,7 +271,7 @@
 				$(this).on("click", function () {
 					//ProcessValue("error", $(this).text(), "ProcessingStaff");
 
-					data.error.push($(this).attr("data-errorId"));
+					data.ErrorIds.push($(this).attr("data-errorId"));
 				});
 			}
 		);

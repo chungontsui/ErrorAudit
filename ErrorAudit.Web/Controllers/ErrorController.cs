@@ -8,19 +8,30 @@ using ErrorAudit.DataAccess.ViewModel;
 
 namespace ErrorAudit.Web.Controllers
 {
+	public class ListError
+	{
+		public int Id { get; set; }
+		public string ErrorCode { get; set; }
+		public string ErrorDesc { get; set; }
+		public string ErrorType { get; set; }
+	}
+
 	public class ErrorController : Controller
 	{
 		private ConfigDataAccess da = new ConfigDataAccess();
 
 		private List<SelectListItem> _errorType;
 
-		private List<ErrorViewModel> GetAllErrors()
+		private List<ListError> GetAllErrors()
 		{
-			List<ErrorViewModel> ev = new List<ErrorViewModel>();
+			List<ListError> ev = new List<ListError>();
+
+			List<SelectListItem> errorTypes = GetErrorType();
 
 			foreach (Error e in da.GetError())
 			{
-				ev.Add(new ErrorViewModel() { Id = e.Id, Code = e.ErrorCode, Description = e.ErrorDescription });
+				var _errorType = errorTypes.Where(r => r.Value.Equals(e.ErrorTypeId.ToString(), StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+				ev.Add(new ListError() { Id = e.Id, ErrorCode = e.ErrorCode, ErrorDesc = e.ErrorDescription, ErrorType = (_errorType == null ? "":_errorType.Text) });
 			}
 
 			return ev;
@@ -90,7 +101,7 @@ namespace ErrorAudit.Web.Controllers
 		[HttpPost]
 		public ActionResult Edit(ErrorViewModel EditError)
 		{
-			da.EditError(new Error() { Id = EditError.Id, ErrorDescription = EditError.Description, ErrorCode = EditError.Code,  });
+			da.EditError(new Error() { Id = EditError.Id, ErrorDescription = EditError.Description, ErrorCode = EditError.Code, ErrorTypeId = EditError.ErrorType });
 			return RedirectToAction("Create");
 		}
 

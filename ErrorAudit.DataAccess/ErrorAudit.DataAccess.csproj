@@ -58,6 +58,11 @@
     <Compile Include="Error.cs">
       <DependentUpon>ErrorAuditModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ErrorAuditEntry.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorAuditEntry.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ErrorAuditModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -117,6 +122,17 @@
     <None Include="dbNZGoodiesDataSet.xss">
       <DependentUpon>dbNZGoodiesDataSet.xsd</DependentUpon>
     </None>
+    <None Include="ErrorAuditEntry.xsc">
+      <DependentUpon>ErrorAuditEntry.xsd</DependentUpon>
+    </None>
+    <None Include="ErrorAuditEntry.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ErrorAuditEntry.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ErrorAuditEntry.xss">
+      <DependentUpon>ErrorAuditEntry.xsd</DependentUpon>
+    </None>
     <None Include="ErrorAuditModel.edmx.diagram">
       <DependentUpon>ErrorAuditModel.edmx</DependentUpon>
     </None>
@@ -142,7 +158,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ErrorAuditReport.rdlc" />
+    <EmbeddedResource Include="Report1.rdlc" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

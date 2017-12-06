@@ -1,8 +1,5 @@
 ﻿@model ErrorAudit.DataAccess.ViewModel.ErrorViewModel
 
-@{
-	Html.RenderPartial("Index");
-}
 
 @using (Html.BeginForm("Edit", "Error", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
@@ -39,3 +36,6 @@
 }
 
 
+@{
+	Html.RenderPartial("Index");
+}

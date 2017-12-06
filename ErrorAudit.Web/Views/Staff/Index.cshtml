@@ -1,63 +1,13 @@
-﻿@model IEnumerable<ErrorAudit.DataAccess.Staff>
-
-@{
-	Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Initial)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrganizationId)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model)
-	{
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Initial)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrganizationId)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-	}
-    
-    </table>
-	@{
-		Html.RenderPartial("Create");
-	}
-</body>
-</html>
+﻿<table class="table">
+	<thead>
+		<tr><td></td><td>First Name</td><td>Last Name</td><td>Initial</td></tr>
+	</thead>
+	<tbody>
+		@{
+			foreach (var s in ViewBag.StaffViewModel)
+			{
+				<tr><td>@Html.ActionLink("Edit", "Edit", new { Id = s.Id })</td><td>@s.FirstName</td><td>@s.LastName</td><td>@s.Initial</td></tr>
+			}
+		}
+	</tbody>
+</table>

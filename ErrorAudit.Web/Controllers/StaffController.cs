@@ -46,7 +46,9 @@ namespace ErrorAudit.Web.Controllers
 
 			ModelState.Clear();
 
-            return View();
+			ViewData.Add("StaffViewModel", GetAllStaff());
+
+			return View();
         }
 
         // GET: Staff/Edit/5
@@ -62,7 +64,9 @@ namespace ErrorAudit.Web.Controllers
 				Initial = editStaff.Initial
 			};
 
-            return View(sv);
+			ViewData.Add("StaffViewModel", GetAllStaff());
+
+			return View(sv);
         }
 
         // POST: Staff/Edit/5
@@ -72,23 +76,23 @@ namespace ErrorAudit.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(StaffViewModel UpdateStaff)
         {
-			da
-            return View(staff);
+			da.EditStaff(new Staff() { Id = UpdateStaff.Id, FirstName = UpdateStaff.FirstName, LastName = UpdateStaff.LastName, Initial = UpdateStaff.Initial });
+			return RedirectToAction("Create");
         }
 
         // GET: Staff/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Staff staff = db.Staff.Find(id);
-            if (staff == null)
-            {
-                return HttpNotFound();
-            }
-            return View(staff);
+			//if (id == null)
+			//{
+			//    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			//}
+			//Staff staff = db.Staff.Find(id);
+			//if (staff == null)
+			//{
+			//    return HttpNotFound();
+			//}
+			return RedirectToAction("Create");
         }
 
         // POST: Staff/Delete/5
@@ -96,18 +100,18 @@ namespace ErrorAudit.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Staff staff = db.Staff.Find(id);
-            db.Staff.Remove(staff);
-            db.SaveChanges();
+            //Staff staff = db.Staff.Find(id);
+            //db.Staff.Remove(staff);
+            //db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
+            //if (disposing)
+            //{
+            //    db.Dispose();
+            //}
             base.Dispose(disposing);
         }
     }
