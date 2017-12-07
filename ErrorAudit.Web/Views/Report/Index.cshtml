@@ -1,0 +1,104 @@
+﻿
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title>Index</title>
+	<style>
+		/*table, th, td {
+			border: 2px solid black;
+			border-collapse: collapse;
+		}*/
+		/*td{height:200px}
+		div.horiText {
+			transform: rotate(270deg);
+		}*/
+		table {
+			border-collapse: collapse;
+		}
+		/*.rotate div {
+			position: absolute;
+		}
+		.rotate {
+			-webkit-transform: rotate(-90deg);
+			-moz-transform: rotate(-90deg);
+			writing-mode: bt-rl;
+			text-indent: -3em;
+			padding: 0px 0px 0px 0px;
+			margin: 0px;
+			text-align: left;
+			vertical-align: top;
+		}*/
+
+		th.rotate {
+			/* Something you can count on */
+			height: 140px;
+			white-space: nowrap;
+		}
+
+			th.rotate > div {
+				transform: translate(2px, 113px) rotate(270deg);
+				width: 30px;
+			}
+
+			th.rotate > div > span {
+				padding: 5px 10px;
+				font: small-caption;
+				font-weight:bold
+			}
+	</style>
+
+</head>
+<body>
+	<table border=1>
+		<thead>
+			<tr style="line-height: 285px">
+				<th class="rotate"><div><span style="font:caption; font-weight:bold">Prescription Numbers(s)</span></div></th>
+				<th class="rotate"><div><span>Incorrect Directions</span></div></th>
+				<th class="rotate"><div><span>History not checked</span></div></th>
+				<th class="rotate"><div><span>Dose innappropriate</span></div></th>
+				<th class="rotate"><div><span>Incorrect Brand Choosen</span></div></th>
+				<th class="rotate"><div><span>Incorrect Quantity/Period Of Supply</span></div></th>
+				<th class="rotate"><div><span>Incorreect Calculations</span></div></th>
+				<th class="rotate"><div><span>Incorrect Medicine</span></div></th>
+				<th class="rotate"><div><span>Incorrect Strength</span></div></th>
+				<th class="rotate"><div><span>Incorrect Quantity</span></div></th>
+				<th class="rotate"><div><span>Correct Product Form</span></div></th>
+				<th class="rotate"><div><span>Incorrect Brand</span></div></th>
+				<th class="rotate"><div><span>Interactions Identified</span></div></th>
+				<th class="rotate"><div><span>Dose Inappropriate</span></div></th>
+				<th class="rotate"><div><span>Drug Omission</span></div></th>
+				<th class="rotate"><div><span>Interactions Identified</span></div></th>
+				<th class="rotate"><div><span>Incorrect Patient Supplied</span></div></th>
+				<th class="rotate"><div><span>Miscellaneous</span></div></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+				<td> </td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
