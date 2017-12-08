@@ -8,32 +8,12 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width" />
-	<title>Index</title>
+	<title>Error Audit Report</title>
 	<style>
-		/*table, th, td {
-			border: 2px solid black;
-			border-collapse: collapse;
-		}*/
-		/*td{height:200px}
-		div.horiText {
-			transform: rotate(270deg);
-		}*/
 		table {
 			border-collapse: collapse;
+			font: small-caption
 		}
-		/*.rotate div {
-			position: absolute;
-		}
-		.rotate {
-			-webkit-transform: rotate(-90deg);
-			-moz-transform: rotate(-90deg);
-			writing-mode: bt-rl;
-			text-indent: -3em;
-			padding: 0px 0px 0px 0px;
-			margin: 0px;
-			text-align: left;
-			vertical-align: top;
-		}*/
 
 		th.rotate {
 			/* Something you can count on */
@@ -41,22 +21,27 @@
 			white-space: nowrap;
 		}
 
-			th.rotate > div {
-				transform: translate(2px, 113px) rotate(270deg);
-				width: 30px;
-			}
+		th.rotate > div {
+			transform: translate(2px, 113px) rotate(270deg);
+			width: 30px;
+		}
 
-			th.rotate > div > span {
-				padding: 5px 10px;
-				font: small-caption;
-				font-weight:bold
-			}
+		th.rotate > div > span {
+			padding: 5px 10px;
+			font: small-caption;
+			font-weight: bold
+		}
 	</style>
 
 </head>
 <body>
 	<table border=1>
 		<thead>
+			<tr>
+				<th></th>
+				<th colspan="9">Entry</th>
+				<th colspan="8">Dispensing</th>
+			</tr>
 			<tr style="line-height: 285px">
 				<th class="rotate"><div><span style="font:caption; font-weight:bold">Prescription Numbers(s)</span></div></th>
 				<th class="rotate"><div><span>Incorrect Directions</span></div></th>
