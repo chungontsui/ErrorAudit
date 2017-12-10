@@ -21,20 +21,24 @@
 			white-space: nowrap;
 		}
 
-		th.rotate > div {
-			transform: translate(2px, 113px) rotate(270deg);
-			width: 30px;
-		}
+			th.rotate > div {
+				transform: translate(2px, 113px) rotate(270deg);
+				-ms-transform: rotate(-90deg);
+				filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+				width: 30px;
+			}
 
-		th.rotate > div > span {
-			padding: 5px 10px;
-			font: small-caption;
-			font-weight: bold
-		}
+				th.rotate > div > span {
+					padding: 5px 10px;
+					font: small-caption;
+					font-weight: bold
+				}
 	</style>
 
 </head>
 <body>
+
+
 	<table border=1>
 		<thead>
 			<tr>
@@ -43,6 +47,7 @@
 				<th colspan="8">Dispensing</th>
 			</tr>
 			<tr style="line-height: 285px">
+				<th><canvas id="myCanvas" width="25" height="200" style="vertical-align: bottom;"></canvas></th>
 				<th class="rotate"><div><span style="font:caption; font-weight:bold">Prescription Numbers(s)</span></div></th>
 				<th class="rotate"><div><span>Incorrect Directions</span></div></th>
 				<th class="rotate"><div><span>History not checked</span></div></th>
@@ -85,5 +90,20 @@
 			</tr>
 		</tbody>
 	</table>
+	<script>
+		var canvas = document.getElementById("myCanvas");
+		var context = canvas.getContext("2d");
+		context.translate(canvas.width - 1, 0);
+
+		// rotate 270 degrees
+		context.rotate(3 * Math.PI / 2);
+
+		context.font = "Bold 16px Arial";
+		context.fillStyle = "#000000"; // blue
+		context.textAlign = "right";
+
+		// draw relative to translate point
+		context.fillText("Prescription Numbers(s)", 0, -5);
+	</script>
 </body>
 </html>
