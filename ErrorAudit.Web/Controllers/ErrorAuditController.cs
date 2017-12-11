@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using ErrorAudit.DataAccess;
 using ErrorAudit.DataAccess.ViewModel;
+using ErrorAudit.Context.Entities;
 
 namespace ErrorAudit.Web.Controllers
 {

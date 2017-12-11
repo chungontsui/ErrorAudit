@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ErrorAudit.DataAccess;
 using ErrorAudit.DataAccess.ViewModel;
+using ErrorAudit.Context.Entities;
 
 namespace ErrorAudit.Web.Controllers
 {

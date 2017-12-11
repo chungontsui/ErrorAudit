@@ -9,7 +9,7 @@ namespace ErrorAudit.Context.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(ErrorAudit.Context.MainContext context)

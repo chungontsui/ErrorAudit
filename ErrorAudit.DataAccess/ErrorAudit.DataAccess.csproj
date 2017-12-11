@@ -50,92 +50,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigDataAccess.cs" />
-    <Compile Include="dbNZGoodiesDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbNZGoodiesDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Error.cs">
-      <DependentUpon>ErrorAuditModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ErrorAuditEntry.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ErrorAuditEntry.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="ErrorAuditModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ErrorAuditModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ErrorAuditModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ErrorAuditModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ErrorAuditModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ErrorAuditModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="ErrorEntry.cs">
-      <DependentUpon>ErrorAuditModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ErrorEntryError.cs">
-      <DependentUpon>ErrorAuditModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ErrorType.cs">
-      <DependentUpon>ErrorAuditModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Organization.cs">
-      <DependentUpon>ErrorAuditModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Outcome.cs">
-      <DependentUpon>ErrorAuditModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Staff.cs">
-      <DependentUpon>ErrorAuditModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\ErrorViewModel.cs" />
     <Compile Include="ViewModel\ViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="ErrorAuditModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ErrorAuditModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="dbNZGoodiesDataSet.xsc">
-      <DependentUpon>dbNZGoodiesDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="dbNZGoodiesDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dbNZGoodiesDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="dbNZGoodiesDataSet.xss">
-      <DependentUpon>dbNZGoodiesDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="ErrorAuditEntry.xsc">
-      <DependentUpon>ErrorAuditEntry.xsd</DependentUpon>
-    </None>
-    <None Include="ErrorAuditEntry.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ErrorAuditEntry.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="ErrorAuditEntry.xss">
-      <DependentUpon>ErrorAuditEntry.xsd</DependentUpon>
-    </None>
-    <None Include="ErrorAuditModel.edmx.diagram">
-      <DependentUpon>ErrorAuditModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -143,22 +68,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ErrorAuditModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ErrorAuditModel.edmx</DependentUpon>
-      <LastGenOutput>ErrorAuditModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ErrorAuditModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ErrorAuditModel.edmx</DependentUpon>
-      <LastGenOutput>ErrorAuditModel.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Report1.rdlc" />
+    <ProjectReference Include="..\ErrorAudit.Context\ErrorAudit.Context.csproj">
+      <Project>{546b8a45-de17-4e4c-b404-d707ea351c13}</Project>
+      <Name>ErrorAudit.Context</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

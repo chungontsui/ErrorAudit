@@ -4,14 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ErrorAudit.DataAccess.ViewModel;
+using ErrorAudit.Context;
+using ErrorAudit.Context.Entities;
 
 namespace ErrorAudit.DataAccess
 {
 	public class ConfigDataAccess
 	{
-		public ConfigDataAccess()
-		{
+		private string ConnStr;
 
+		public ConfigDataAccess(string connStr = null)
+		{
+			ConnStr = connStr;
 		}
 
 		#region Error
@@ -19,9 +23,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var db = new dbNZGoodiesEntities())
+				using (var db = new MainContext(ConnStr))
 				{
-					return db.Error.FirstOrDefault(e => e.Id == id);
+					return db.Errors.FirstOrDefault(e => e.Id == id);
 				}
 			}
 			catch (Exception ex)
@@ -34,9 +38,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var db = new dbNZGoodiesEntities())
+				using (var db = new MainContext(ConnStr))
 				{
-					return db.Error.ToList();
+					return db.Errors.ToList();
 				}
 			}
 			catch (Exception ex)
@@ -49,9 +53,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var context = new dbNZGoodiesEntities())
+				using (var context = new MainContext(ConnStr))
 				{
-					context.Error.Add(NewError);
+					context.Errors.Add(NewError);
 					context.SaveChanges();
 				}
 
@@ -67,9 +71,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var context = new dbNZGoodiesEntities())
+				using (var context = new MainContext(ConnStr))
 				{
-					Error editError = context.Error.FirstOrDefault(e => e.Id == error.Id);
+					Error editError = context.Errors.FirstOrDefault(e => e.Id == error.Id);
 					if (editError != null)
 					{
 						context.Entry(editError).CurrentValues.SetValues(error);
@@ -87,9 +91,9 @@ namespace ErrorAudit.DataAccess
 		}
 		public void DeleteError(Error error)
 		{
-			using (var db = new dbNZGoodiesEntities())
+			using (var db = new MainContext(ConnStr))
 			{
-				db.Error.Remove(error);
+				db.Errors.Remove(error);
 				db.SaveChanges();
 			}
 		}
@@ -98,9 +102,9 @@ namespace ErrorAudit.DataAccess
 		#region ErrorType
 		public IEnumerable<ErrorType> GetErrorType()
 		{
-			using (var context = new dbNZGoodiesEntities())
+			using (var context = new MainContext(ConnStr))
 			{
-				return context.ErrorType.ToList();
+				return context.ErrorTypes.ToList();
 			}
 		}
 		#endregion
@@ -110,9 +114,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var db = new dbNZGoodiesEntities())
+				using (var db = new MainContext(ConnStr))
 				{
-					return db.Staff.FirstOrDefault(e => e.Id == id);
+					return db.Staffs.FirstOrDefault(e => e.Id == id);
 				}
 			}
 			catch (Exception ex)
@@ -125,9 +129,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var db = new dbNZGoodiesEntities())
+				using (var db = new MainContext(ConnStr))
 				{
-					return db.Staff.ToList();
+					return db.Staffs.ToList();
 				}
 			}
 			catch (Exception ex)
@@ -140,9 +144,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var context = new dbNZGoodiesEntities())
+				using (var context = new MainContext(ConnStr))
 				{
-					context.Staff.Add(NewStaff);
+					context.Staffs.Add(NewStaff);
 					context.SaveChanges();
 				}
 
@@ -158,9 +162,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var context = new dbNZGoodiesEntities())
+				using (var context = new MainContext(ConnStr))
 				{
-					Staff editStaff = context.Staff.FirstOrDefault(e => e.Id == Staff.Id);
+					Staff editStaff = context.Staffs.FirstOrDefault(e => e.Id == Staff.Id);
 					if (editStaff != null)
 					{
 						context.Entry(editStaff).CurrentValues.SetValues(Staff);
@@ -178,9 +182,9 @@ namespace ErrorAudit.DataAccess
 		}
 		public void DeleteStaff(Staff Staff)
 		{
-			using (var db = new dbNZGoodiesEntities())
+			using (var db = new MainContext(ConnStr))
 			{
-				db.Staff.Remove(Staff);
+				db.Staffs.Remove(Staff);
 				db.SaveChanges();
 			}
 		}
@@ -191,9 +195,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var db = new dbNZGoodiesEntities())
+				using (var db = new MainContext(ConnStr))
 				{
-					return db.Organization.FirstOrDefault(e => e.Id == id);
+					return db.Organizations.FirstOrDefault(e => e.Id == id);
 				}
 			}
 			catch (Exception ex)
@@ -206,9 +210,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var db = new dbNZGoodiesEntities())
+				using (var db = new MainContext(ConnStr))
 				{
-					return db.Organization.ToList();
+					return db.Organizations.ToList();
 				}
 			}
 			catch (Exception ex)
@@ -221,9 +225,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var context = new dbNZGoodiesEntities())
+				using (var context = new MainContext(ConnStr))
 				{
-					context.Organization.Add(NewOrganization);
+					context.Organizations.Add(NewOrganization);
 					context.SaveChanges();
 				}
 
@@ -239,9 +243,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var context = new dbNZGoodiesEntities())
+				using (var context = new MainContext(ConnStr))
 				{
-					Organization editOrganization = context.Organization.FirstOrDefault(e => e.Id == Organization.Id);
+					Organization editOrganization = context.Organizations.FirstOrDefault(e => e.Id == Organization.Id);
 					if (editOrganization != null)
 					{
 						context.Entry(editOrganization).CurrentValues.SetValues(Organization);
@@ -259,9 +263,9 @@ namespace ErrorAudit.DataAccess
 		}
 		public void DeleteOrganization(Organization Organization)
 		{
-			using (var db = new dbNZGoodiesEntities())
+			using (var db = new MainContext(ConnStr))
 			{
-				db.Organization.Remove(Organization);
+				db.Organizations.Remove(Organization);
 				db.SaveChanges();
 			}
 		}
@@ -272,9 +276,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var db = new dbNZGoodiesEntities())
+				using (var db = new MainContext(ConnStr))
 				{
-					return db.Outcome.FirstOrDefault(e => e.Id == id);
+					return db.Outcomes.FirstOrDefault(e => e.Id == id);
 				}
 			}
 			catch (Exception ex)
@@ -287,9 +291,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var db = new dbNZGoodiesEntities())
+				using (var db = new MainContext(ConnStr))
 				{
-					return db.Outcome.ToList();
+					return db.Outcomes.ToList();
 				}
 			}
 			catch (Exception ex)
@@ -302,9 +306,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var context = new dbNZGoodiesEntities())
+				using (var context = new MainContext(ConnStr))
 				{
-					context.Outcome.Add(NewOutcome);
+					context.Outcomes.Add(NewOutcome);
 					context.SaveChanges();
 				}
 
@@ -320,9 +324,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var context = new dbNZGoodiesEntities())
+				using (var context = new MainContext(ConnStr))
 				{
-					Outcome editOutcome = context.Outcome.FirstOrDefault(e => e.Id == Outcome.Id);
+					Outcome editOutcome = context.Outcomes.FirstOrDefault(e => e.Id == Outcome.Id);
 					if (editOutcome != null)
 					{
 						context.Entry(editOutcome).CurrentValues.SetValues(Outcome);
@@ -340,9 +344,9 @@ namespace ErrorAudit.DataAccess
 		}
 		public void DeleteOutcome(Outcome Outcome)
 		{
-			using (var db = new dbNZGoodiesEntities())
+			using (var db = new MainContext(ConnStr))
 			{
-				db.Outcome.Remove(Outcome);
+				db.Outcomes.Remove(Outcome);
 				db.SaveChanges();
 			}
 		}
@@ -353,9 +357,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var db = new dbNZGoodiesEntities())
+				using (var db = new MainContext(ConnStr))
 				{
-					return db.ErrorEntry.FirstOrDefault(e => e.Id == id);
+					return db.ErrorEntries.FirstOrDefault(e => e.Id == id);
 				}
 			}
 			catch (Exception ex)
@@ -368,9 +372,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var db = new dbNZGoodiesEntities())
+				using (var db = new MainContext(ConnStr))
 				{
-					return db.ErrorEntry.ToList();
+					return db.ErrorEntries.ToList();
 				}
 			}
 			catch (Exception ex)
@@ -383,9 +387,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var context = new dbNZGoodiesEntities())
+				using (var context = new MainContext(ConnStr))
 				{
-					context.ErrorEntry.Add(NewErrorEntry);
+					context.ErrorEntries.Add(NewErrorEntry);
 					context.SaveChanges();
 				}
 
@@ -441,15 +445,15 @@ namespace ErrorAudit.DataAccess
 		{
 			List<ErrorEntryViewModel> output = null;
 
-			using (var context = new dbNZGoodiesDataSet())
+			using (var context = new MainContext(ConnStr))
 			{
-				var result = context.ErrorEntry.ToList();
+				var result = context.ErrorEntries.ToList();
 
 				if (result != null && result.Count > 0)
 				{
 					output = new List<ErrorEntryViewModel>();
 
-					//foreach (ErrorEntry ee in context.ErrorEntry)
+					//foreach (ErrorEntry ee in context.ErrorEntries)
 					//{
 
 
@@ -482,9 +486,9 @@ namespace ErrorAudit.DataAccess
 		{
 			try
 			{
-				using (var context = new dbNZGoodiesEntities())
+				using (var context = new MainContext(ConnStr))
 				{
-					ErrorEntry editErrorEntry = context.ErrorEntry.FirstOrDefault(e => e.Id == ErrorEntry.Id);
+					ErrorEntry editErrorEntry = context.ErrorEntries.FirstOrDefault(e => e.Id == ErrorEntry.Id);
 					if (editErrorEntry != null)
 					{
 						context.Entry(editErrorEntry).CurrentValues.SetValues(ErrorEntry);
@@ -500,12 +504,45 @@ namespace ErrorAudit.DataAccess
 				throw new Exception("Fail EditErrorEntry:" + ex.Message);
 			}
 		}
-		public void DeleteErrorEntry(ErrorEntry ErrorEntry)
+		public void DeleteErrorEntry(ErrorEntry ErrorEntry, bool OverrideError = true)
 		{
-			using (var db = new dbNZGoodiesEntities())
+			using (var db = new MainContext(ConnStr))
 			{
-				db.ErrorEntry.Remove(ErrorEntry);
-				db.SaveChanges();
+				var deleteEntry = db.ErrorEntries.FirstOrDefault(ee => ee.Id == ErrorEntry.Id);
+
+				if (deleteEntry != null)
+				{
+					db.ErrorEntries.Remove(ErrorEntry);
+					db.SaveChanges();
+				}
+				else
+				{
+					if (!OverrideError)
+					{
+						throw new Exception("DeleteErrorEntry Failed: ErrorEntry to delete is not Found");
+					}
+				}
+			}
+		}
+
+		public void DeleteErrorEntryById(int ErrorEntryId, bool OverrideError = true)
+		{
+			using (var db = new MainContext(ConnStr))
+			{
+				var deleteEntry = db.ErrorEntries.FirstOrDefault(ee => ee.Id == ErrorEntryId);
+
+				if (deleteEntry != null)
+				{
+					db.ErrorEntries.Remove(deleteEntry);
+					db.SaveChanges();
+				}
+				else
+				{
+					if (!OverrideError)
+					{
+						throw new Exception("DeleteErrorEntry Failed: ErrorEntry to delete is not Found");
+					}
+				}
 			}
 		}
 		#endregion
@@ -513,35 +550,35 @@ namespace ErrorAudit.DataAccess
 		#region ErrorEntryError
 		public void AddErrorEntryError(ErrorEntryError errorEntryError)
 		{
-			using (var context = new dbNZGoodiesEntities())
+			using (var context = new MainContext(ConnStr))
 			{
-				context.ErrorEntryError.Add(errorEntryError);
+				context.ErrorEntryErrors.Add(errorEntryError);
 				context.SaveChanges();
 			}
 		}
 
 		public void AddErrorEntryErrorList(IEnumerable<ErrorEntryError> errorEntryErrors)
 		{
-			using (var context = new dbNZGoodiesEntities())
+			using (var context = new MainContext(ConnStr))
 			{
-				context.ErrorEntryError.AddRange(errorEntryErrors);
+				context.ErrorEntryErrors.AddRange(errorEntryErrors);
 				context.SaveChanges();
 			}
 		}
 
 		public IEnumerable<ErrorEntryError> GetErrorEntryErrorByErrorId(int ErrorId)
 		{
-			using (var context = new dbNZGoodiesEntities())
+			using (var context = new MainContext(ConnStr))
 			{
-				return context.ErrorEntryError.Where(ee => ee.ErrorId == ErrorId).ToList();
+				return context.ErrorEntryErrors.Where(ee => ee.ErrorId == ErrorId).ToList();
 			}
 		}
 
 		public IEnumerable<int> GetErrorEntryErrorIdsByErrorId(int ErrorId)
 		{
-			using (var context = new dbNZGoodiesEntities())
+			using (var context = new MainContext(ConnStr))
 			{
-				return context.ErrorEntryError.Where(ee => ee.ErrorId == ErrorId).Select(s => s.ErrorEntryId);
+				return context.ErrorEntryErrors.Where(ee => ee.ErrorId == ErrorId).Select(s => s.ErrorEntryId);
 			}
 		}
 

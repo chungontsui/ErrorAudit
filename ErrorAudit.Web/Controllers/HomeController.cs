@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ErrorAudit.DataAccess;
+using ErrorAudit.Context.Entities;
 
 namespace ErrorAudit.Web.Controllers
 {

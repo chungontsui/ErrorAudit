@@ -1090,6 +1090,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ErrorAudit.Context\ErrorAudit.Context.csproj">
+      <Project>{546b8a45-de17-4e4c-b404-d707ea351c13}</Project>
+      <Name>ErrorAudit.Context</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ErrorAudit.DataAccess\ErrorAudit.DataAccess.csproj">
       <Project>{5fd69f4e-82e1-40d1-9ee4-2aaf61d959fa}</Project>
       <Name>ErrorAudit.DataAccess</Name>

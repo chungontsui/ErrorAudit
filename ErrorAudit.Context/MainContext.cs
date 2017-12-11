@@ -10,6 +10,11 @@ namespace ErrorAudit.Context
 {
 	public class MainContext:DbContext
 	{
+		public MainContext(string ConnStr):base(string.IsNullOrEmpty(ConnStr)?"ErrorAudit":ConnStr)
+		{
+			
+		}
+
 		public DbSet<Error> Errors { get; set; }
 		public DbSet<ErrorEntry> ErrorEntries { get; set; }
 		public DbSet<ErrorEntryError> ErrorEntryErrors { get; set; }
