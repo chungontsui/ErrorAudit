@@ -55,7 +55,7 @@
 			<tr style="line-height: 285px">
 				<th><canvas id="myCanvas" width="25" height="200" style="vertical-align: bottom;"></canvas></th>
 				<th class="rotate"><div><span style="font:caption; font-weight:bold">Prescription Numbers(s)</span></div></th>
-				<th class="rotate"><div><span>Incorrect Directions</span></div></th>
+				@*<th class="rotate"><div><span>Incorrect Directions</span></div></th>
 				<th class="rotate"><div><span>History not checked</span></div></th>
 				<th class="rotate"><div><span>Dose innappropriate</span></div></th>
 				<th class="rotate"><div><span>Incorrect Brand Choosen</span></div></th>
@@ -71,7 +71,11 @@
 				<th class="rotate"><div><span>Drug Omission</span></div></th>
 				<th class="rotate"><div><span>Interactions Identified</span></div></th>
 				<th class="rotate"><div><span>Incorrect Patient Supplied</span></div></th>
-				<th class="rotate"><div><span>Miscellaneous</span></div></th>
+				<th class="rotate"><div><span>Miscellaneous</span></div></th>*@
+				@foreach (var err in ViewBag.AllErrors)
+				{
+
+				}
 			</tr>
 		</thead>
 		<tbody>
@@ -105,7 +109,7 @@
 		context.rotate(3 * Math.PI / 2);
 
 		context.font = "Bold 16px Arial";
-		context.fillStyle = "#000000"; // blue
+		context.fillStyle = "#000000";
 		context.textAlign = "right";
 
 		// draw relative to translate point
