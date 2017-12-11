@@ -14,7 +14,12 @@ namespace ErrorAudit.Web.Controllers
 		public void Post(ErrorEntryViewModel error)
 		{
 			ConfigDataAccess da = new ConfigDataAccess();
-			da.AddErrorEntryFromViewModel(error);
+			da.AddErrorViewModel(error);
 		}
+
+		//public IEnumerable<ErrorEntryViewModel> Get()
+		//{
+
+		//}
     }
 }

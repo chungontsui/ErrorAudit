@@ -437,35 +437,44 @@ namespace ErrorAudit.DataAccess
 			}
 		}
 
-		public void AddErrorEntryFromViewModel(ErrorEntryViewModel NewErrorEntry)
+		public IEnumerable<ErrorEntryViewModel> GetErrorEntryViewModel()
 		{
-			try
+			List<ErrorEntryViewModel> output = null;
+
+			using (var context = new dbNZGoodiesDataSet())
 			{
-				using (var context = new dbNZGoodiesEntities())
+				var result = context.ErrorEntry.ToList();
+
+				if (result != null && result.Count > 0)
 				{
-					//Need to sort out HomeController, Frontend passing the staff Ids in first
-					ErrorEntry errorEntry = new ErrorEntry()
-					{
-						OrganizationId = 9999,
-						CreatedDate = DateTime.Now,
-						UpdateDate = DateTime.Now,
-						//CompletedStaffId = NewErrorEntry.NoticedStaffChecked
-					};
+					output = new List<ErrorEntryViewModel>();
 
-					foreach (int ErrorId in NewErrorEntry.ErrorIds)
-					{
+					//foreach (ErrorEntry ee in context.ErrorEntry)
+					//{
 
-					}
-					//context.ErrorEntry.Add(NewErrorEntry);
-					//context.SaveChanges();
+
+					//	output.Add(new ErrorEntryViewModel()
+					//	{
+					//		ScriptNumber = ee.ScriptNumber,
+					//		ProcessingStaffEnter = ee.ProcessingStaffEnter,
+					//		ProcessingStaffDispensing = ee.ProcessingStaffDispensing,
+					//		ProcessingStaffChecked = ee.ProcessingStaffChecked,
+					//		NoticedStaffEnter = ee.NoticedStaffEnter,
+					//		NoticedStaffDispensing = ee.NoticedStaffDispensing,
+					//		NoticedStaffChecked = ee.NoticedStaffChecked,
+					//		CompletedByStaffId = ee.CompletedStaffId.Value,
+					//		OutcomeId = ee.OutcomeId.Value,
+					//		ErrorIds = GetErrorEntryErrorIdsByErrorId(ee.Id)
+					//	});
+					//}
+
+					return output;
+				}
+				else
+				{
+					return output;
 				}
 
-				//return NewErrorEntry;
-			}
-			catch (Exception ex)
-			{
-
-				throw new Exception("Fail AddErrorEntry: " + ex.Message);
 			}
 		}
 
@@ -527,6 +536,15 @@ namespace ErrorAudit.DataAccess
 				return context.ErrorEntryError.Where(ee => ee.ErrorId == ErrorId).ToList();
 			}
 		}
+
+		public IEnumerable<int> GetErrorEntryErrorIdsByErrorId(int ErrorId)
+		{
+			using (var context = new dbNZGoodiesEntities())
+			{
+				return context.ErrorEntryError.Where(ee => ee.ErrorId == ErrorId).Select(s => s.ErrorEntryId);
+			}
+		}
+
 		#endregion
 	}
 }
