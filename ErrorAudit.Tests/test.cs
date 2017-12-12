@@ -18,17 +18,18 @@ namespace ErrorAudit.Tests
 			DA = new ConfigDataAccess("ErrorAuditTest");
 		}
 
-		//[Test]
-		//public void CanAddOrganization()
-		//{
-		//	string orgName = "Test Pharmacy";
-		//	Organization org = new Organization();
-		//	org.OrganizationName = orgName;
-		//	DA.AddOrganization(org);
-		//	var result = DA.GetOrganization().FirstOrDefault(o => o.OrganizationName == orgName);
-		//	Assert.That(result != null, "Can't find the flipping added org!");
-		//	//DA.DeleteOrganization(result);
-		//}
+		[SetUp]
+		public void AddTestData()
+		{
+			using (var context = new MainContext("ErrorAuditTest"))
+			{
+				context.Staffs.AddRange(TestData.TestStaff);
+				context.ErrorEntries.Add(TestData.TestErrorEntry);
+				context.Errors.AddRange(TestData.TestError);
+				context.SaveChanges();
+			}
+		}
+
 
 		[Test]
 		public void CanAddErrorEntry()
@@ -37,11 +38,52 @@ namespace ErrorAudit.Tests
 			Assert.That(result.Id != 0, "AddErrorEntry is not returning new Id");
 		}
 
+		[Test]
+		public void CanGetStaffWithIntial()
+		{
+			var result = DA.GetStaff();
+
+			Assert.That(result.All(s => !string.IsNullOrEmpty(s.Initial)), "Not all returned staff have Initial");
+			Assert.That(result.First(s => s.FirstName.Equals("Fiona", StringComparison.InvariantCultureIgnoreCase)).Initial.Equals("FSZH", StringComparison.InvariantCulture), "Fiona's Initial is not FSZH as entered");
+			Assert.That(result.Count == 3, "Number of staff returned is not 3 but " + result.Count.ToString());
+		}
+
+		[Test]
+		public void CanGetAllErrorsSortedById()
+		{
+			var allErrors = DA.GetError();
+
+
+			Assert.That(allErrors.First().Id == allErrors.Min(e => e.Id), "First Error On the List is not one with smallest id");
+			Assert.That(allErrors.Last().Id == allErrors.Max(e => e.Id), "Last Error On the List is not one with largest id");
+		}
+
+		[Test]
+		public void CanConvertErrorIdsToBoolList()
+		{
+			var allErrors = DA.GetError();
+
+			int[] errorIds = { allErrors[1].Id, allErrors[3].Id };
+
+			var result = DA.ConvertErrorIdListToBoolList(errorIds);
+
+			Assert.That(allErrors.Count.Equals(result.Count()), "Boolean List Return Does Not Have The Same Count as All Errors");
+			Assert.That(result.ElementAt(0).Equals(false), "Element at index 0 is Not False");
+			Assert.That(result.ElementAt(1).Equals(true), "Element at index 1 is Not True");
+			Assert.That(result.ElementAt(2).Equals(false), "Element at index 2 is Not False");
+			Assert.That(result.ElementAt(3).Equals(true), "Element at index 3 is Not True");
+		}
+
 		[TearDown]
 		public void RemoveTestData()
 		{
 			//DA.DeleteErrorEntry(TestData.TestErrorEntry);
 			//??Truncate the ErrorEntry table??
+			using (var context = new MainContext("ErrorAuditTest"))
+			{
+				context.Database.ExecuteSqlCommand("truncate table Staffs");
+				context.Database.ExecuteSqlCommand("truncate table ErrorEntryErrors");
+			}
 		}
 	}
 
@@ -64,6 +106,29 @@ namespace ErrorAudit.Tests
 					ProcessingStaffDispensing = 12345,
 					ProcessingStaffEnter = 12345,
 					ScriptNumber = "654789"
+				};
+			}
+		}
+		internal static List<Staff> TestStaff
+		{
+			get
+			{
+				return new List<Staff>() {
+					new Staff() { Id = 1, FirstName = "Chung", LastName = "Tsui" },
+					new Staff() { Id = 2, FirstName = "Fiona", LastName = "Ho", Initial = "FSZH"},
+					new Staff() { Id = 3, FirstName = "Warran", LastName = "Flaunty"}
+				};
+			}
+		}
+		internal static List<Error> TestError
+		{
+			get
+			{
+				return new List<Error>() {
+					new Error() { ErrorCode = "", ErrorDescription = "Incorrect Medicine" },
+					new Error() { ErrorCode = "", ErrorDescription = "Incorrect Strength" },
+					new Error() { ErrorCode = "", ErrorDescription = "Incorrect Quantity" },
+					new Error() { ErrorCode = "", ErrorDescription = "Correct Product Form" }
 				};
 			}
 		}

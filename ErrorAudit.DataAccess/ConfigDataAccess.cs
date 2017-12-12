@@ -40,7 +40,7 @@ namespace ErrorAudit.DataAccess
 			{
 				using (var db = new MainContext(ConnStr))
 				{
-					return db.Errors.ToList();
+					return db.Errors.OrderBy(e => e.Id).ToList();
 				}
 			}
 			catch (Exception ex)
@@ -127,12 +127,26 @@ namespace ErrorAudit.DataAccess
 		}
 		public List<Staff> GetStaff()
 		{
+			List<Staff> staff = new List<Staff>();
+
 			try
 			{
 				using (var db = new MainContext(ConnStr))
 				{
-					return db.Staffs.ToList();
+					db.Staffs.ToList().ForEach(s =>
+						{
+
+							if (string.IsNullOrEmpty(s.Initial))
+							{
+								s.Initial = s.FirstName.Substring(0, 1) + s.LastName.Substring(0, 1);
+							}
+
+							staff.Add(s);
+						}
+					);
 				}
+
+				return staff;
 			}
 			catch (Exception ex)
 			{
@@ -478,6 +492,57 @@ namespace ErrorAudit.DataAccess
 				}
 
 			}
+		}
+
+		public IEnumerable<bool> ConvertErrorIdListToBoolList(IEnumerable<int> ErrorIds)
+		{
+			List<bool> result = new List<bool>();
+
+			var allErrorIds = GetError().Select(e => e.Id);
+
+			foreach (int ErrorId in allErrorIds)
+			{
+				result.Add(ErrorIds.Contains(ErrorId));
+			}
+
+			return result;
+		}
+
+		public IEnumerable<ErrorEntryReportViewModel> GetErrorEntryReportViewModel()
+		{
+			List<ErrorEntryReportViewModel> result = null;
+
+			var errorEntries = GetErrorEntryViewModel();
+
+			if (errorEntries != null && errorEntries.Count() > 0)
+			{
+				result = new List<ErrorEntryReportViewModel>();
+
+				var allStaff = GetStaff();
+				var allOutcomes = GetOutcome();
+
+				ErrorEntryReportViewModel eerv = new ErrorEntryReportViewModel();
+
+				foreach (ErrorEntryViewModel eev in errorEntries)
+				{
+					eerv = new ErrorEntryReportViewModel();
+
+					eerv.ScriptNumber = eev.ScriptNumber;
+					eerv.ProcessingStaffEnter = allStaff.First(s => s.Id == eev.ProcessingStaffEnter).Initial;
+					eerv.ProcessingStaffDispensing = allStaff.First(s => s.Id == eev.ProcessingStaffDispensing).Initial;
+					eerv.ProcessingStaffChecked = allStaff.First(s => s.Id == eev.ProcessingStaffChecked).Initial;
+					eerv.NoticedStaffEnter = allStaff.First(s => s.Id == eev.NoticedStaffEnter).Initial;
+					eerv.NoticedStaffDispensing = allStaff.First(s => s.Id == eev.NoticedStaffDispensing).Initial;
+					eerv.NoticedStaffChecked = allStaff.First(s => s.Id == eev.NoticedStaffChecked).Initial;
+					eerv.CompletedByStaff = allStaff.First(s => s.Id == eev.CompletedByStaffId).Initial;
+					eerv.HasThisError = ConvertErrorIdListToBoolList(eev.ErrorIds);
+					eerv.Outcome = allOutcomes.First(o => o.Id == eev.OutcomeId).OutcomeDescription;
+
+					result.Add(eerv);
+				}
+			}
+
+			return result;
 		}
 
 		public ErrorEntry EditErrorEntry(ErrorEntry ErrorEntry)

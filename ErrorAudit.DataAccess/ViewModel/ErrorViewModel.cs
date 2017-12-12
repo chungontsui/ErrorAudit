@@ -19,4 +19,18 @@ namespace ErrorAudit.DataAccess.ViewModel
 		public int CompletedByStaffId { get; set; }
 		public int OutcomeId { get; set; }
 	}
+
+	public class ErrorEntryReportViewModel
+	{
+		public string ScriptNumber { get; set; }
+		public IEnumerable<Boolean> HasThisError { get; set; }
+		public string ProcessingStaffEnter { get; set; }
+		public string ProcessingStaffDispensing { get; set; }
+		public string ProcessingStaffChecked { get; set; }
+		public string NoticedStaffEnter { get; set; }
+		public string NoticedStaffDispensing { get; set; }
+		public string NoticedStaffChecked { get; set; }
+		public string CompletedByStaff { get; set; }
+		public string Outcome { get; set; }
+	}
 }
