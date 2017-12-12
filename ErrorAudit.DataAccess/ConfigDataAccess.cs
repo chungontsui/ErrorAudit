@@ -133,17 +133,16 @@ namespace ErrorAudit.DataAccess
 			{
 				using (var db = new MainContext(ConnStr))
 				{
-					db.Staffs.ToList().ForEach(s =>
+					foreach (Staff s in db.Staffs)
+					{
+						if (string.IsNullOrEmpty(s.Initial))
 						{
-
-							if (string.IsNullOrEmpty(s.Initial))
-							{
-								s.Initial = s.FirstName.Substring(0, 1) + s.LastName.Substring(0, 1);
-							}
-
-							staff.Add(s);
+							s.Initial = s.FirstName.Substring(0, 1) + s.LastName.Substring(0, 1);
 						}
-					);
+
+						staff.Add(s);
+					}
+
 				}
 
 				return staff;
