@@ -53,7 +53,7 @@
 				<th colspan="8">Dispensing</th>
 			</tr>
 			<tr style="line-height: 285px">
-				<th><canvas id="myCanvas" width="25" height="200" style="vertical-align: bottom;"></canvas></th>
+				<th><canvas id="PrescriptionNumber" width="25" height="200" style="vertical-align: bottom;"></canvas></th>
 				<th class="rotate"><div><span style="font:caption; font-weight:bold">Prescription Numbers(s)</span></div></th>
 				@*<th class="rotate"><div><span>Incorrect Directions</span></div></th>
 				<th class="rotate"><div><span>History not checked</span></div></th>
@@ -74,7 +74,7 @@
 				<th class="rotate"><div><span>Miscellaneous</span></div></th>*@
 				@foreach (var err in ViewBag.AllErrors)
 				{
-
+					<th class="vertical-text" data-vertText="@err.ErrorDescription"></th>
 				}
 			</tr>
 		</thead>
@@ -101,19 +101,35 @@
 		</tbody>
 	</table>
 	<script>
-		var canvas = document.getElementById("myCanvas");
-		var context = canvas.getContext("2d");
-		context.translate(canvas.width - 1, 0);
 
-		// rotate 270 degrees
-		context.rotate(3 * Math.PI / 2);
+		//var allHeadings = document.querySelectorAll(".vertical-text");
 
-		context.font = "Bold 16px Arial";
-		context.fillStyle = "#000000";
-		context.textAlign = "right";
+		for (var heading of document.querySelectorAll(".vertical-text"))
+		{
+			var text = heading.getAttribute("data-vertText");
 
-		// draw relative to translate point
-		context.fillText("Prescription Numbers(s)", 0, -5);
+			var canvas = document.createElement("canvas");
+			canvas.setAttribute("width", "25");
+			canvas.setAttribute("height", "200");
+			canvas.style.verticalAlign = "bottom";
+			//var canvas = document.getElementById("myCanvas");
+			var context = canvas.getContext("2d");
+			context.translate(canvas.width - 1, 0);
+
+			// rotate 270 degrees
+			context.rotate(3 * Math.PI / 2);
+
+			context.font = "Bold 16px Arial";
+			context.fillStyle = "#000000";
+			context.textAlign = "right";
+
+			// draw relative to translate point
+			context.fillText(text, 0, -5);
+
+			heading.appendChild(canvas);
+		}
+
+
 	</script>
 </body>
 </html>

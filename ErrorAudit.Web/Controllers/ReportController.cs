@@ -19,9 +19,25 @@ namespace ErrorAudit.Web.Controllers
         // GET: Report
         public ActionResult Index()
         {
-			ViewBag.AllErrors = DA.GetError();
+			List<Error> sampleErrors = new List<Error>();
+			sampleErrors.Add(new Error() { ErrorCode = "", ErrorDescription = "History not checked" });
+			sampleErrors.Add(new Error() { ErrorCode = "", ErrorDescription = "Dose innappropriate" });
+			sampleErrors.Add(new Error() { ErrorCode = "", ErrorDescription = "Incorrect Brand Choosen" });
+			sampleErrors.Add(new Error() { ErrorCode = "", ErrorDescription = "Incorrect Quantity/Period Of Supply" });
+			sampleErrors.Add(new Error() { ErrorCode = "", ErrorDescription = "Incorreect Calculations" });
+			sampleErrors.Add(new Error() { ErrorCode = "", ErrorDescription = "Incorrect Medicine" });
+			sampleErrors.Add(new Error() { ErrorCode = "", ErrorDescription = "Incorrect Strength" });
+			sampleErrors.Add(new Error() { ErrorCode = "", ErrorDescription = "Incorrect Quantity" });
+			sampleErrors.Add(new Error() { ErrorCode = "", ErrorDescription = "Correct Product Form" });
+			ViewBag.AllErrors = sampleErrors;//DA.GetError();
+
+			var errorEntries = DA.GetErrorEntryViewModel();
+
+
 
             return View();
         }
     }
+
+
 }

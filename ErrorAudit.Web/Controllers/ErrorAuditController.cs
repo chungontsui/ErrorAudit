@@ -12,15 +12,21 @@ namespace ErrorAudit.Web.Controllers
 {
     public class ErrorAuditController : ApiController
     {
+		private ConfigDataAccess da;
+
+		public ErrorAuditController()
+		{
+			da = new ConfigDataAccess();
+		}
+
 		public void Post(ErrorEntryViewModel error)
 		{
-			ConfigDataAccess da = new ConfigDataAccess();
 			da.AddErrorViewModel(error);
 		}
 
 		//public IEnumerable<ErrorEntryViewModel> Get()
 		//{
-
+		//	return da.GetErrorEntryViewModel();
 		//}
-    }
+	}
 }

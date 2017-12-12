@@ -40,7 +40,8 @@ namespace ErrorAudit.Tests
 		[TearDown]
 		public void RemoveTestData()
 		{
-			DA.DeleteErrorEntry(TestData.TestErrorEntry);
+			//DA.DeleteErrorEntry(TestData.TestErrorEntry);
+			//??Truncate the ErrorEntry table??
 		}
 	}
 

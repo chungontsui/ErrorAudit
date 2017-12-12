@@ -453,24 +453,22 @@ namespace ErrorAudit.DataAccess
 				{
 					output = new List<ErrorEntryViewModel>();
 
-					//foreach (ErrorEntry ee in context.ErrorEntries)
-					//{
-
-
-					//	output.Add(new ErrorEntryViewModel()
-					//	{
-					//		ScriptNumber = ee.ScriptNumber,
-					//		ProcessingStaffEnter = ee.ProcessingStaffEnter,
-					//		ProcessingStaffDispensing = ee.ProcessingStaffDispensing,
-					//		ProcessingStaffChecked = ee.ProcessingStaffChecked,
-					//		NoticedStaffEnter = ee.NoticedStaffEnter,
-					//		NoticedStaffDispensing = ee.NoticedStaffDispensing,
-					//		NoticedStaffChecked = ee.NoticedStaffChecked,
-					//		CompletedByStaffId = ee.CompletedStaffId.Value,
-					//		OutcomeId = ee.OutcomeId.Value,
-					//		ErrorIds = GetErrorEntryErrorIdsByErrorId(ee.Id)
-					//	});
-					//}
+					foreach (ErrorEntry ee in context.ErrorEntries)
+					{
+						output.Add(new ErrorEntryViewModel()
+						{
+							ScriptNumber = ee.ScriptNumber,
+							ProcessingStaffEnter = ee.ProcessingStaffEnter,
+							ProcessingStaffDispensing = ee.ProcessingStaffDispensing,
+							ProcessingStaffChecked = ee.ProcessingStaffChecked,
+							NoticedStaffEnter = ee.NoticedStaffEnter,
+							NoticedStaffDispensing = ee.NoticedStaffDispensing,
+							NoticedStaffChecked = ee.NoticedStaffChecked,
+							CompletedByStaffId = ee.CompletedStaffId.Value,
+							OutcomeId = ee.OutcomeId.Value,
+							ErrorIds = GetErrorEntryErrorIdsByErrorId(ee.Id)
+						});
+					}
 
 					return output;
 				}
