@@ -21,17 +21,19 @@ namespace ErrorAudit.Web.Controllers
         // GET: Report
         public ActionResult Index()
         {
-			List<Error> sampleErrorHeadings = new List<Error>();
-			sampleErrorHeadings.Add(new Error() { ErrorCode = "", ErrorDescription = "History not checked" });
-			sampleErrorHeadings.Add(new Error() { ErrorCode = "", ErrorDescription = "Dose innappropriate" });
-			sampleErrorHeadings.Add(new Error() { ErrorCode = "", ErrorDescription = "Incorrect Brand Choosen" });
-			sampleErrorHeadings.Add(new Error() { ErrorCode = "", ErrorDescription = "Incorrect Quantity/Period Of Supply" });
-			sampleErrorHeadings.Add(new Error() { ErrorCode = "", ErrorDescription = "Incorreect Calculations" });
-			sampleErrorHeadings.Add(new Error() { ErrorCode = "", ErrorDescription = "Incorrect Medicine" });
-			sampleErrorHeadings.Add(new Error() { ErrorCode = "", ErrorDescription = "Incorrect Strength" });
-			sampleErrorHeadings.Add(new Error() { ErrorCode = "", ErrorDescription = "Incorrect Quantity" });
-			sampleErrorHeadings.Add(new Error() { ErrorCode = "", ErrorDescription = "Correct Product Form" });
-			ViewBag.AllErrors = sampleErrorHeadings;//DA.GetError();
+			List<ReportErrorHeading> sampleErrorHeadings = new List<ReportErrorHeading>();
+			sampleErrorHeadings.Add(new ReportErrorHeading() { ErrorCode = "", ErrorDescription = "D:History not checked", ErrorType = "Dispensing" });
+			sampleErrorHeadings.Add(new ReportErrorHeading() { ErrorCode = "", ErrorDescription = "D:Dose innappropriate", ErrorType = "Dispensing" });
+			sampleErrorHeadings.Add(new ReportErrorHeading() { ErrorCode = "", ErrorDescription = "D:Incorrect Brand Choosen", ErrorType = "Dispensing"});
+			sampleErrorHeadings.Add(new ReportErrorHeading() { ErrorCode = "", ErrorDescription = "D:Incorrect Quantity/Period Of Supply", ErrorType = "Dispensing"});
+			sampleErrorHeadings.Add(new ReportErrorHeading() { ErrorCode = "", ErrorDescription = "E:Incorreect Calculations" , ErrorType = "Entry"});
+			sampleErrorHeadings.Add(new ReportErrorHeading() { ErrorCode = "", ErrorDescription = "E:Incorrect Medicine", ErrorType = "Entry"});
+			sampleErrorHeadings.Add(new ReportErrorHeading() { ErrorCode = "", ErrorDescription = "E:Incorrect Strength", ErrorType = "Entry"});
+			sampleErrorHeadings.Add(new ReportErrorHeading() { ErrorCode = "", ErrorDescription = "E:Incorrect Quantity", ErrorType = "Entry"});
+			sampleErrorHeadings.Add(new ReportErrorHeading() { ErrorCode = "", ErrorDescription = "E:Correct Product Form", ErrorType = "Entry"});
+			ViewBag.AllErrors = sampleErrorHeadings.OrderByDescending(s => s.ErrorType);
+			ViewBag.DispensingErrorCount = sampleErrorHeadings.Count(s => s.ErrorType.Equals("Dispensing", StringComparison.InvariantCultureIgnoreCase));
+			ViewBag.EntryErrorCount = sampleErrorHeadings.Count(s => s.ErrorType.Equals("Entry", StringComparison.InvariantCultureIgnoreCase));
 
 			//var errorEntries = DA.GetErrorEntryReportViewModel();
 
@@ -39,15 +41,38 @@ namespace ErrorAudit.Web.Controllers
 
 			//errorEntries = DA.GetErrorEntryReportViewModel();
 
-			errorEntries.Add(new ErrorEntryReportViewModel() {  })
+			for (int i = 1; i < 10; i++)
+			{
+				errorEntries.Add(new ErrorEntryReportViewModel()
+				{
+					Outcome = "Nailed It",
+					ScriptNumber = "456987",
+					HasThisError = GenerateRandomBoolList(sampleErrorHeadings.Count),
+					ProcessingStaffEnter = "AB",
+					ProcessingStaffDispensing = "CD",
+					ProcessingStaffChecked = "WF",
+					NoticedStaffEnter = "FH",
+					NoticedStaffDispensing = "AB",
+					NoticedStaffChecked = "JS",
+					CompletedByStaff = "AB",
+				});
+			}
+
+			ViewBag.ErrorEntries = errorEntries;
 
             return View();
         }
 
 		private List<bool> GenerateRandomBoolList(int range)
 		{
-
+			Random r = new Random();
+			List<bool> result = new List<bool>();
+			for (int i = 0; i < range; i++) {
+				result.Add(r.Next(0, 2) == 0?true:false);
+			}
+			return result;
 		}
+
     }
 
 

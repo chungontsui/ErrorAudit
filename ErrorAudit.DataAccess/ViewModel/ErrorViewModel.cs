@@ -33,4 +33,11 @@ namespace ErrorAudit.DataAccess.ViewModel
 		public string CompletedByStaff { get; set; }
 		public string Outcome { get; set; }
 	}
+
+	public class ReportErrorHeading
+	{
+		public string ErrorCode { get; set; }
+		public string ErrorDescription { get; set; }
+		public string ErrorType { get; set; }
+	}
 }
